@@ -1,3 +1,6 @@
+@cor-th-title:rgb(196, 196, 196);
+
+
 body{
  background-color: white;
  font-family: Arial, Helvetica, sans-serif;
@@ -9,14 +12,40 @@ body{
 }
 table,td,tr,th{
   border: 1px solid; 
+  padding: 5px;
 }
 table{
   border-collapse: collapse;
-  width: 100vw;
+  width: 90vw;
+  margin: 2px;
+}
+.table__header--info{
+  height: 50px;
 }
 #textTable{
+  outline: none;
   width: 100%;
-  height: 100%;
+  border: none;
   resize: none;
   font-family: Arial, Helvetica, sans-serif;
+}
+.textarea__td{
+  padding: 0;
+  text-align: center;
+  padding-right: 1px;
+}
+th.group-title,th{
+  background-color: @cor-th-title;
+  font-weight: 500;
+}
+thead{
+  td{
+    vertical-align: top;
+  }
+}
+#iTableType{
+  margin-left: 10px;
+}
+.km--fix{
+  text-align: end;
 }

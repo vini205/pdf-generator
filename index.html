@@ -10,19 +10,127 @@
 </head>
 <body>
   <div class="form">
+    <form>
+      <label for="ichamado">Número do Chamado</label>
+      <input type="number" name="ichamado" id="ichamado">
+      
+      <label for="icliente">Cliente</label>
+      <input type="text" name="icliente" id="icliente" placeholder="Cliente">
 
+       <label for="idata">Data</label>
+       <input type="date" name="idata" id="idata">
+
+       <label for="iendereco">Endereço</label>
+       <input type="text" name="iendereco" id="iendereco">
+
+       <label for="icidade">Cidade</label>
+       <input type="text" name="icidade" id="icidade">
+
+       <label for="iestado">Estados:</label>
+      <select name="iestado" id="iestado">
+        <option value="" selected>-- Escolha</option>       
+          <option value="SC">Santa catarina</option>
+          <option value="PR">Paraná</option>
+          <option value="RS">Rio Grande do Sul</option>
+          <option value="SP">São Paulo</option>
+          <option value="MG">Minas Gerais</option>
+          <option value="RJ">RIo de Janeiro</option>
+          <option value="ES">Espirito Santo</option>
+          <option value="MT">Mato Grosso</option>
+          <option value="MS">Mato grosso Sul</option>
+          <option value="GO">Goiás</option>
+          <option value="AM">Amazonas</option>
+          <option value="PA">Pará</option>
+          <option value="RR">Roraima</option>
+          <option value="AP">Amapá</option>
+          <option value="AC">Acre</option>
+          <option value="RO">Rondônio</option>
+          <option value="TO">Tocantins</option>
+          <option value="BA">Bahia</option>
+          <option value="MA">Maranhão</option>
+          <option value="PI">Piauí</option>
+          <option value="CE">Ceará</option>
+          <option value="RN">Rio grande do Norte</option>
+          <option value="PB">Paraiba</option>
+          <option value="PE">Pernambuco</option>
+          <option value="SE">Sergipe</option>
+      </select>
+
+      <label for="itipo">Tipo de Atendimento</label>
+      <div>
+        <p>Corretiva</p> 
+        <input type="radio" name="itipo" id="itipo"> 
+      </div>
+      <div>
+        <p>Preventiva</p>
+        <input type="radio" name="itipo" id="itipo">
+      </div>
+      <div>
+        <p>Outros:</p>
+        <input type="text" name="itipoOutro" id="itipoOutro" placeholder="Digite aqui">
+      </div>
+
+      <label for="imotivo">Motivo do chamado</label>
+      <textarea name="imotivo" class="text" id="imotivo" cols="30" rows="10"></textarea>
+
+      <label for="ihoraIn">Horario de Chegada</label>
+      <input type="time" name="ihoraIn" id="iHoraIn">
+
+      <label for="ihoraOut">Horario de Saída</label>
+      <input type="time" name="ihoraOut" id="iHoraOut">
+
+      <label for="idataOut">Data da saída</label>
+      <input type="date" name="idataOut" id="idataOut">
+
+      <label for="iespaco">Deslocamneto Total</label>
+      <input type="number" name="iespaco" id="iespaco">
+
+      <label for="idefeito">Defeito Constatado</label>
+      <textarea name="idefeito" class="text" id="idefeito" cols="30" rows="10"></textarea>
+      <label for="icausa">Causa</label>
+      <textarea name="icausa" class="text" id="icausa" cols="30" rows="10"></textarea>
+      <label for="iservico">Serviço executado</label>
+      <textarea name="iservico" class="text" id="iservico" cols="30" rows="10"></textarea>
+
+      <label for="imaterialNumber">Quantos materiais foram usados?</label>
+      <input type="number" class="material_number"  name="imaterialNumber" id="imaterialNumber">
+      
+
+    </form>
+    <!-- 
+      Dados:
+      Nº do chamado
+      Cliente
+      Data
+      Endereço
+      Cidade
+      Estado
+      Tipo de atendimento
+      Motivo do chamado
+      Horarios de chegada e saida
+      Deslocamento Total
+      Defeito COnstatado
+      Causa
+      Serviço executado
+      Material Requisitado { 
+        Descrição, qtd, Unidade, Valor Unitário, Valor total, Total
+      }
+      Visto e nome do tecnico
+      Visto e nome do cliente
+     -->
   </div>
   <div class="table">
     <table>
       <caption>TRS Refrigeração</caption>
       <thead>
-        <tr >
+        <!-- Dados Iniciais -->
+        <tr class="table__header--info" >
           <th colspan="8">Ficha de Atedimento</th>
           <td colspan="4">
             Chamado Nº
           </td>
         </tr>
-        <tr>
+        <tr class="table__header--info">
           <td colspan="8">
             Cliente:
           </td>
@@ -30,10 +138,10 @@
             Data:
           </td>
         </tr>
-        <tr>
-          <td colspan="4">Endereço</td>
-          <td colspan="5">Cidade</td>
-          <td colspan="2">Estado</td>
+        <tr class="table__header--info">
+          <td colspan="3">Endereço</td>
+          <td colspan="3">Cidade</td>
+          <td colspan="3">Estado</td>
         </tr>
       </thead>
       <tbody>
@@ -53,10 +161,10 @@
         </tr>
         <!-- Horários -->
         <tr>
-          <th colspan="3">Chegada ao cliente</th>
-          <th colspan="3">Saida do Cliente</th>
-          <th colspan="3" rowspan="3">Deslocamento Total</th>
-          <td rowspan="3">Km</td>
+          <th colspan="2">Chegada ao cliente</th>
+          <th colspan="2">Saida do Cliente</th>
+          <th colspan="4" rowspan="3">Deslocamento Total</th>
+          <td rowspan="3" class="km--fix" colspan="2">Km</td>
         </tr>
         <tr>
           <th colspan="1">Data</th>
@@ -77,21 +185,21 @@
           <th colspan="12" class="group-title">Defeito Constatado</th>
         </tr>
         <tr>
-          <td colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="4"></textarea></td>
+          <td class="textarea__td" colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="3"></textarea></td>
         </tr>
 
         <tr>
           <th colspan="12" class="group-title">Causa Provável</th>
         </tr>
         <tr>
-          <td colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="4"></textarea></td>
+          <td class="textarea__td" colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="3"></textarea></td>
         </tr>
 
         <tr>
           <th colspan="12" class="group-title">Serviço executado</th>
         </tr>
         <tr>
-          <td colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="4"></textarea></td>
+          <td class="textarea__td" colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="3"></textarea></td>
         </tr>
         <!-- Material -->
         <tr>
@@ -121,13 +229,24 @@
           <th colspan="12" class="group-title">Observação</th>
         </tr>
         <tr>
-          <td colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="4"></textarea></td>
+          <td class="textarea__td" colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="3"></textarea></td>
         </tr>
 
       </tbody>
       <tfoot>
-        <!-- Final -->
-        
+        <!-- Assinaturas -->
+        <tr class="assinatura__table">
+          <th colspan="4">Técnico responsável</th>
+          <th colspan="6">Cliente (Estou ciente da avaliação acima)</th>
+        </tr>
+        <tr>
+          <td colspan="4">Visto</td>
+          <td colspan="5">Visto</td>
+        </tr>
+        <tr>
+          <td colspan="4">Nome do técnico</td>
+          <td colspan="5">Nome do Cliente</td>
+        </tr>
       </tfoot>
     </table>
   </div>
