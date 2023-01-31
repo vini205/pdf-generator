@@ -1,0 +1,19 @@
+{
+  "name": "relatorio",
+  "version": "1.0.0",
+  "description": "Um site ue gerá pdf a partir de dados inseridos",
+  "main": "index.js",
+  "source": "index.html",
+  "scripts": {
+    "dev": "parcel",
+    "b": "parcel build --public-url /",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vinicius Gonçalves",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-less": "^2.8.3",
+    "jspdf": "^2.5.1",
+    "parcel": "^2.8.3"
+  }
+}
