@@ -10,9 +10,12 @@
 </head>
 <body>
   <div class="form">
+    
+    <h1>Coloque aqui os dados do relatório</h1>
+
     <form>
       <label for="ichamado">Número do Chamado</label>
-      <input type="number" name="ichamado" id="ichamado">
+      <input placeholder="Número do chamado" type="number" name="ichamado" id="ichamado">
       
       <label for="icliente">Cliente</label>
       <input type="text" name="icliente" id="icliente" placeholder="Cliente">
@@ -21,10 +24,10 @@
        <input type="date" name="idata" id="idata">
 
        <label for="iendereco">Endereço</label>
-       <input type="text" name="iendereco" id="iendereco">
+       <input placeholder="Digite aqui o endereço" type="text" name="iendereco" id="iendereco">
 
        <label for="icidade">Cidade</label>
-       <input type="text" name="icidade" id="icidade">
+       <input placeholder="Nome da Cidade" type="text" name="icidade" id="icidade">
 
        <label for="iestado">Estados:</label>
       <select name="iestado" id="iestado">
@@ -57,15 +60,15 @@
       </select>
 
       <label for="itipo">Tipo de Atendimento</label>
-      <div>
+      <div class="tipo__div">
         <p>Corretiva</p> 
         <input type="radio" name="itipo" id="itipo"> 
       </div>
-      <div>
+      <div class="tipo__div">
         <p>Preventiva</p>
         <input type="radio" name="itipo" id="itipo">
       </div>
-      <div>
+      <div class="tipo__div">
         <p>Outros:</p>
         <input type="text" name="itipoOutro" id="itipoOutro" placeholder="Digite aqui">
       </div>
@@ -82,19 +85,20 @@
       <label for="idataOut">Data da saída</label>
       <input type="date" name="idataOut" id="idataOut">
 
-      <label for="iespaco">Deslocamneto Total</label>
-      <input type="number" name="iespaco" id="iespaco">
+      <label for="iespaco">Deslocamento Total</label>
+      <input type="number" placeholder="Digite aqui o total de Km rodados" name="iespaco" id="iespaco">
 
       <label for="idefeito">Defeito Constatado</label>
       <textarea name="idefeito" class="text" id="idefeito" cols="30" rows="10"></textarea>
+
       <label for="icausa">Causa</label>
       <textarea name="icausa" class="text" id="icausa" cols="30" rows="10"></textarea>
+
       <label for="iservico">Serviço executado</label>
       <textarea name="iservico" class="text" id="iservico" cols="30" rows="10"></textarea>
 
       <label for="imaterialNumber">Quantos materiais foram usados?</label>
       <input type="number" class="material_number"  name="imaterialNumber" id="imaterialNumber">
-      
 
     </form>
     <!-- 
