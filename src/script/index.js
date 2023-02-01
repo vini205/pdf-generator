@@ -17,8 +17,18 @@ function putInInput(data,input) {
     i.value=data; 
   }
 }
+
 function addInObj([data,name=data], obj) {
   obj[name]=data;
+}
+
+function addTOTable(data,where,sobrescrever=false) {
+  if (sobrescrever===false) {
+    c(where)
+    where.innerHTML+=`: ${data.value}`;
+  }else{
+    where.innerHTML=data.value;
+  }
 }
 
 /*
@@ -42,29 +52,70 @@ IESPACO =  getElement('iespaco'),
 IDEFEITO = getElement('idefeito'),
 ICAUSA = getElement('icausa'),
 ISERVICO = getElement('iservico'),
-IMATERIALNUMBER = getElement('imaterialNumber');
+IMATERIALNUMBER = getElement('imaterialNumber'),
+IOBS = getElement('iobs');
 
+const TCHAMADO = getElement('tchamado'),
+TCLIENTE = getElement('tcliente'),
+TDATA = getElement('tdata'),
+TENDERECO = getElement('tendereco'),
+TCIDADE = getElement('tcidade'),
+TESTADO = getElement('testado'),
+TTABLETYPE = getElement('iTableType'),
+TTIPOOUTRO = getElement('ttipoOutro'),
+TMOTIVO = getElement('tmotivo'),
+TDATAIN = getElement('tdataIn'),
+TDATAOUT = getElement('tdataOut'),
+ThoraIN = getElement('thoraIn'),
+THORAOUT = getElement('thoraOut'),
+TESPACO = getElement('tespaco'),
+TDEFEITO = getElement('tdefeito'),
+TCAUSA = getElement('tcausa'),
+TSERVICO = getElement('tservico'),
+TOBS = getElement('tobs'),
+TCLI = getElement('tcli'),
+TTEC = getElement('ttec');
 
+const btn = getElement('btn');
 
-
-const info = [INAMETEC,ICHAMADO,ICLIENTE,IDATA,IENDERECO,ICIDADE,IESTADO,ITIPO,ITIPOoUTRO,IMOTIVO,
-IHORAIN,IHORAOUT,IDATAOUT,IESPACO,IDEFEITO,ICAUSA,ISERVICO,IMATERIALNUMBER]
+const info = [INAMETEC,ICHAMADO,ICLIENTE,IDATA,IENDERECO,ICIDADE,IESTADO,ITIPO,ITIPOoUTRO,
+  IMOTIVO,IHORAIN,IHORAOUT,IDATAOUT,IESPACO,IDEFEITO,ICAUSA,ISERVICO,IOBS,IMATERIALNUMBER];
+const table = [TTEC,TCHAMADO,TCLIENTE,TDATA,TENDERECO,TCIDADE,TESTADO,TTIPOOUTRO,
+  TMOTIVO,ThoraIN,THORAOUT,TDATAOUT,TESPACO,TDEFEITO,TCAUSA,TSERVICO,TOBS];
 
 const data = new Date();
 const year = data.getFullYear();
 const month = data.getMonth();
 const day = data.getDate();
 
-putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
-putInInput('SP',IESTADO);
-
 class Relatorio {
   constructor(test){
-    this.test=test;
+    
   }
 }
-const relatorio = new Relatorio('Criado');
+const relatorio = new Relatorio();
 
-for (const i of info) {
+putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
+putInInput(['SP'],[IESTADO]);
+
+
+for (const i of info) {//adiciona inputs na class
   addInObj([i,i.id],relatorio);
 }
+
+
+const pass1 = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,
+IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO]
+
+
+document.querySelector('.table').style.display='block';
+
+function add() {
+  for (let i = 0; i < pass1.length; i+=2) {
+    addTOTable(pass1[i],pass1[i+1]);
+  }
+  TESPACO.innerHTML = IESPACO.value+ 'Km';
+}
+
+
+ 

@@ -124,7 +124,7 @@ form select {
 }
 /*Table Style*/
 .table {
-  display: block;
+  display: none;
   background-color: white;
 }
 table,
@@ -146,6 +146,7 @@ table {
   outline: none;
   width: 100%;
   border: none;
+  padding: 15px;
   resize: none;
   font-family: Arial, Helvetica, sans-serif;
 }

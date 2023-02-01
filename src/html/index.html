@@ -36,31 +36,31 @@
        <label for="iestado">Estados:</label>
       <select name="iestado" id="iestado">
         <option value="" selected>-- Escolha</option>       
-          <option value="SC">Santa catarina</option>
-          <option value="PR">Paraná</option>
-          <option value="RS">Rio Grande do Sul</option>
-          <option value="SP">São Paulo</option>
-          <option value="MG">Minas Gerais</option>
-          <option value="RJ">RIo de Janeiro</option>
-          <option value="ES">Espirito Santo</option>
-          <option value="MT">Mato Grosso</option>
-          <option value="MS">Mato grosso Sul</option>
-          <option value="GO">Goiás</option>
-          <option value="AM">Amazonas</option>
-          <option value="PA">Pará</option>
-          <option value="RR">Roraima</option>
-          <option value="AP">Amapá</option>
-          <option value="AC">Acre</option>
-          <option value="RO">Rondônio</option>
-          <option value="TO">Tocantins</option>
-          <option value="BA">Bahia</option>
-          <option value="MA">Maranhão</option>
-          <option value="PI">Piauí</option>
-          <option value="CE">Ceará</option>
-          <option value="RN">Rio grande do Norte</option>
-          <option value="PB">Paraiba</option>
-          <option value="PE">Pernambuco</option>
-          <option value="SE">Sergipe</option>
+        <option value="AC">Acre</option>
+        <option value="AM">Amazonas</option>
+        <option value="AP">Amapá</option>
+        <option value="BA">Bahia</option>
+        <option value="CE">Ceará</option>
+        <option value="ES">Espirito Santo</option>
+        <option value="GO">Goiás</option>
+        <option value="MA">Maranhão</option>
+        <option value="MG">Minas Gerais</option>
+        <option value="MS">Mato grosso Sul</option>
+        <option value="MT">Mato Grosso</option>
+        <option value="PA">Pará</option>
+        <option value="PB">Paraiba</option>
+        <option value="PE">Pernambuco</option>
+        <option value="PI">Piauí</option>
+        <option value="PR">Paraná</option>
+        <option value="RJ">RIo de Janeiro</option>
+        <option value="RN">Rio grande do Norte</option>
+        <option value="RO">Rondônio</option>
+        <option value="RR">Roraima</option>
+        <option value="RS">Rio Grande do Sul</option>
+        <option value="SC">Santa catarina</option>
+        <option value="SP">São Paulo</option>
+        <option value="SE">Sergipe</option>
+        <option value="TO">Tocantins</option>
       </select>
       <fieldset class="tipo__form">
         <label for="itipo">Tipo de Atendimento</label>
@@ -88,7 +88,7 @@
       <input type="time" name="ihoraOut" id="iHoraOut">
 
       <label for="idataOut">Data da saída</label>
-      <input type="date" name="idataOut" id="idataOut">
+      <input type="date" value="08-02-2023" name="idataOut" id="idataOut">
 
       <label for="iespaco">Deslocamento Total</label>
       <input type="number" placeholder="Digite aqui o total de Km rodados" name="iespaco" id="iespaco">
@@ -105,7 +105,10 @@
       <label for="imaterialNumber">Quantos materiais foram usados?</label>
       <input type="number" class="material_number"  name="imaterialNumber" id="imaterialNumber">
 
-      <input type="button" value="Adicionar">
+      <label for="iobs">Observação</label>
+      <textarea name="iobs" class="text" id="iobs" cols="30" rows="3"></textarea>
+
+      <input type="button" id="btn" value="Adicionar">
 
     </form>
     <!-- 
@@ -143,10 +146,10 @@
         </tr>
         <tr class="table__header--info">
           <td colspan="8" id="tcliente">
-            Cliente:
+            Cliente
           </td>
           <td colspan="4" id="tdata">
-            Data:
+            Data
           </td>
         </tr>
         <tr class="table__header--info">
@@ -175,7 +178,7 @@
           <th colspan="2">Chegada ao cliente</th>
           <th colspan="2">Saida do Cliente</th>
           <th colspan="4" rowspan="3">Deslocamento Total</th>
-          <td rowspan="3" class="km--fix" colspan="2">Km</td>
+          <td rowspan="3" class="km--fix" id="tespaco" colspan="2">Km</td>
         </tr>
         <tr>
           <th colspan="1" >Data</th>
@@ -240,7 +243,7 @@
           <th colspan="12" class="group-title">Observação</th>
         </tr>
         <tr>
-          <td class="textarea__td" colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="3"></textarea></td>
+          <td class="textarea__td" colspan="12"><textarea name="textTable" id="tobs" class="textTable" cols="30" rows="3"></textarea></td>
         </tr>
 
       </tbody>
@@ -255,8 +258,8 @@
           <td colspan="5">Visto</td>
         </tr>
         <tr>
-          <td colspan="4">Nome do técnico</td>
-          <td colspan="5">Nome do Cliente</td>
+          <td id="ttec" colspan="4">Nome do técnico</td>
+          <td id="tcli" colspan="5">Nome do Cliente</td>
         </tr>
       </tfoot>
     </table>
