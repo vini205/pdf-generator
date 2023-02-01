@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerar Relatório</title>
-  <link rel="stylesheet" href="style/style.less">
-  <link rel="stylesheet" href="style/public/style.css">
+  <link rel="stylesheet" href="../style/style.less">
+ <link rel="stylesheet" href="../style/public/style.css">
 </head>
 <body>
   <div class="form">
@@ -14,6 +14,10 @@
     <h1>Coloque aqui os dados do relatório</h1>
 
     <form>
+
+      <label for="inametec">Nome do técnico</label>
+      <input type="text" name="inametec" id="inametec">
+
       <label for="ichamado">Número do Chamado</label>
       <input placeholder="Número do chamado" type="number" name="ichamado" id="ichamado">
       
@@ -58,23 +62,24 @@
           <option value="PE">Pernambuco</option>
           <option value="SE">Sergipe</option>
       </select>
-
-      <label for="itipo">Tipo de Atendimento</label>
-      <div class="tipo__div">
-        <p>Corretiva</p> 
-        <input type="radio" name="itipo" id="itipo"> 
-      </div>
-      <div class="tipo__div">
-        <p>Preventiva</p>
-        <input type="radio" name="itipo" id="itipo">
-      </div>
-      <div class="tipo__div">
-        <p>Outros:</p>
-        <input type="text" name="itipoOutro" id="itipoOutro" placeholder="Digite aqui">
-      </div>
+      <fieldset class="tipo__form">
+        <label for="itipo">Tipo de Atendimento</label>
+        <div class="tipo__div">
+          <p>Corretiva</p> 
+          <input type="radio" name="itipo" id="itipo"> 
+        </div>
+        <div class="tipo__div">
+          <p>Preventiva</p>
+          <input type="radio" name="itipo" id="itipo">
+        </div>
+        <div class="tipo__div">
+          <p>Outros:</p>
+          <input type="text" name="itipoOutro" id="itipoOutro" placeholder="Digite aqui">
+        </div>
+      </fieldset>
 
       <label for="imotivo">Motivo do chamado</label>
-      <textarea name="imotivo" class="text" id="imotivo" cols="30" rows="10"></textarea>
+      <textarea name="imotivo" class="text" id="imotivo" cols="30" rows="3"></textarea>
 
       <label for="ihoraIn">Horario de Chegada</label>
       <input type="time" name="ihoraIn" id="iHoraIn">
@@ -89,16 +94,18 @@
       <input type="number" placeholder="Digite aqui o total de Km rodados" name="iespaco" id="iespaco">
 
       <label for="idefeito">Defeito Constatado</label>
-      <textarea name="idefeito" class="text" id="idefeito" cols="30" rows="10"></textarea>
+      <textarea name="idefeito" class="text" id="idefeito" cols="30" rows="3"></textarea>
 
       <label for="icausa">Causa</label>
-      <textarea name="icausa" class="text" id="icausa" cols="30" rows="10"></textarea>
+      <textarea name="icausa" class="text" id="icausa" cols="30" rows="3"></textarea>
 
       <label for="iservico">Serviço executado</label>
-      <textarea name="iservico" class="text" id="iservico" cols="30" rows="10"></textarea>
+      <textarea name="iservico" class="text" id="iservico" cols="30" rows="3"></textarea>
 
       <label for="imaterialNumber">Quantos materiais foram usados?</label>
       <input type="number" class="material_number"  name="imaterialNumber" id="imaterialNumber">
+
+      <input type="button" value="Adicionar">
 
     </form>
     <!-- 
@@ -130,22 +137,22 @@
         <!-- Dados Iniciais -->
         <tr class="table__header--info" >
           <th colspan="8">Ficha de Atedimento</th>
-          <td colspan="4">
+          <td colspan="4" id="tchamado">
             Chamado Nº
           </td>
         </tr>
         <tr class="table__header--info">
-          <td colspan="8">
+          <td colspan="8" id="tcliente">
             Cliente:
           </td>
-          <td colspan="4">
+          <td colspan="4" id="tdata">
             Data:
           </td>
         </tr>
         <tr class="table__header--info">
-          <td colspan="3">Endereço</td>
-          <td colspan="3">Cidade</td>
-          <td colspan="3">Estado</td>
+          <td colspan="3" id="tendereco">Endereço</td>
+          <td colspan="3" id="tcidade"''>Cidade</td>
+          <td colspan="3" id="testado">Estado</td>
         </tr>
       </thead>
       <tbody>
@@ -155,13 +162,13 @@
         <tr>
           <td colspan="3" >Preventiva <input type="checkbox" name="iTableType" id="iTableType"></td>
           <td colspan="3">Corretiva <input type="checkbox" name="iTableType" id="iTableType"></td>
-          <td colspan="4">Outro <input type="checkbox" name="iTableType" id="iTableType"></td>
+          <td colspan="4">Outro <input type="checkbox" name="iTableType" id="iTableType">: <span id="ttipoOutro"></span></td>
         </tr>
         <tr>
-          <th colspan="12" class="group-title">Motivo do Chamado</th>
+          <th colspan="12" class="group-title" >Motivo do Chamado</th>
         </tr>
         <tr>
-          <td colspan="12">Motivo</td>
+          <td id="tmotivo" colspan="12">Motivo</td>
         </tr>
         <!-- Horários -->
         <tr>
@@ -171,39 +178,39 @@
           <td rowspan="3" class="km--fix" colspan="2">Km</td>
         </tr>
         <tr>
-          <th colspan="1">Data</th>
-          <th colspan="1">Horário</th>
-          <th colspan="1">Data</th>
-          <th colspan="1">Horário</th>
+          <th colspan="1" >Data</th>
+          <th colspan="1" >Horário</th>
+          <th colspan="1" >Data</th>
+          <th colspan="1" >Horário</th>
         </tr>
         <tr>
-          <td>/2023</td>
-          <td> : </td>
-          <td>/2023</td>
-          <td> : </td>
+          <td id="tdataIn">/2023</td>
+          <td id="thoraIn"> : </td>
+          <td id="tdataOut">/2023</td>
+          <td id="thoraOut"> : </td>
         </tr>
 
         <!-- Descrição -->
         <!-- textarea temporário -->
         <tr>
-          <th colspan="12" class="group-title">Defeito Constatado</th>
+          <th colspan="12"  class="group-title">Defeito Constatado</th>
         </tr>
         <tr>
-          <td class="textarea__td" colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="3"></textarea></td>
+          <td class="textarea__td"  colspan="12"><textarea id="tdefeito" name="textTable" class="textTable" cols="30" rows="3"></textarea></td>
         </tr>
 
         <tr>
           <th colspan="12" class="group-title">Causa Provável</th>
         </tr>
         <tr>
-          <td class="textarea__td" colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="3"></textarea></td>
+          <td class="textarea__td" colspan="12"><textarea id="tcausa" name="textTable" class="textTable" cols="30" rows="3"></textarea></td>
         </tr>
 
         <tr>
           <th colspan="12" class="group-title">Serviço executado</th>
         </tr>
         <tr>
-          <td class="textarea__td" colspan="12"><textarea name="textTable" id="textTable" cols="30" rows="3"></textarea></td>
+          <td class="textarea__td" colspan="12"><textarea id="tservico" name="textTable" class="textTable" cols="30" rows="3"></textarea></td>
         </tr>
         <!-- Material -->
         <tr>
@@ -256,6 +263,6 @@
   </div>
 
 
-  <script src="index.js"></script>
+  <script src="../script/index.js"></script>
 </body>
 </html>
