@@ -4,13 +4,16 @@ console.log("Working");
   Functions
 */
 function c(txt) {
-  console.log(txt);
+      console.log(txt);
 } 
-function getElement(id,className) {
-  if(className===undefined){
+function getElement(id=undefined,className=undefined,tag=undefined) {
+  if(className===undefined && tag === undefined){
     return document.getElementById(id);
+  }else if(tag===undefined){
+    return document.getElementsByClassName(className);
+  } else{
+    return document.querySelectorAll(tag);
   }
-  return document.getElementsByClassName(className);
 }
 function putInInput(data,input) {
   for (const i of input) {
@@ -21,14 +24,35 @@ function putInInput(data,input) {
 function addInObj([data,name=data], obj) {
   obj[name]=data;
 }
+function fixDate(date) {
+  let ano = date.slice(0,4);
+  let mes = date.slice(5,7);
+  let dia = date.slice(8);
+  return `${dia}/${mes}/${ano}`;
+}
+function addTOTable(data,where) {  
+  if(data.tagNAme=='TEXTAREA'){
 
-function addTOTable(data,where,sobrescrever=false) {
-  if (sobrescrever===false) {
-    c(where)
-    where.innerHTML+=`: ${data.value}`;
-  }else{
-    where.innerHTML=data.value;
+    where.value=`${data.value}`;  
+
+  } else if(data.type=='date'){
+
+    let date = fixDate(data.value);
+
+    if(where.innerHTML=='/2023'){
+
+      where.innerHTML =`${date}`; 
+
+    }else{
+
+      where.innerHTML +=`: ${date}`; 
+    }
+  }else if(data.type=='time'){
+    where.innerHTML =`${data.value}`; 
   }
+   else{
+    where.innerHTML+=`: ${data.value}`;
+  }    
 }
 
 /*
@@ -42,7 +66,7 @@ IDATA = getElement('idata'),
 IENDERECO = getElement('iendereco'),
 ICIDADE = getElement('icidade'),
 IESTADO = getElement('iestado'),
-ITIPO = getElement('itipo'),
+ITIPO = document.getElementsByName('itipo'),
 ITIPOoUTRO = getElement('itipoOutro'),
 IMOTIVO = getElement('imotivo'),
 IHORAIN = getElement('iHoraIn'),
@@ -61,7 +85,7 @@ TDATA = getElement('tdata'),
 TENDERECO = getElement('tendereco'),
 TCIDADE = getElement('tcidade'),
 TESTADO = getElement('testado'),
-TTABLETYPE = getElement('iTableType'),
+TTABLETYPE = document.getElementsByName('iTableType'),
 TTIPOOUTRO = getElement('ttipoOutro'),
 TMOTIVO = getElement('tmotivo'),
 TDATAIN = getElement('tdataIn'),
@@ -78,43 +102,44 @@ TTEC = getElement('ttec');
 
 const btn = getElement('btn');
 
-const info = [INAMETEC,ICHAMADO,ICLIENTE,IDATA,IENDERECO,ICIDADE,IESTADO,ITIPO,ITIPOoUTRO,
-  IMOTIVO,IHORAIN,IHORAOUT,IDATAOUT,IESPACO,IDEFEITO,ICAUSA,ISERVICO,IOBS,IMATERIALNUMBER];
-const table = [TTEC,TCHAMADO,TCLIENTE,TDATA,TENDERECO,TCIDADE,TESTADO,TTIPOOUTRO,
-  TMOTIVO,ThoraIN,THORAOUT,TDATAOUT,TESPACO,TDEFEITO,TCAUSA,TSERVICO,TOBS];
-
 const data = new Date();
 const year = data.getFullYear();
 const month = data.getMonth();
 const day = data.getDate();
 
-class Relatorio {
-  constructor(test){
-    
-  }
-}
-const relatorio = new Relatorio();
-
 putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
 putInInput(['SP'],[IESTADO]);
 
-
-for (const i of info) {//adiciona inputs na class
-  addInObj([i,i.id],relatorio);
-}
+IDATAOUT.oninput=c(IDATAOUT.value);
 
 
-const pass1 = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,
-IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO]
+const pass1 = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,
+IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,
+IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO];
 
+btn.addEventListener('click',add);
+/* 
+Add funciona porque é como se fosse um atributo que é atribuido ao evento, e dps roda como uma função
+para mais shorturl.at/bdi39. 
+Se colocar add() ele roda a função que retorna undefined.
 
-document.querySelector('.table').style.display='block';
-
+*/ 
 function add() {
   for (let i = 0; i < pass1.length; i+=2) {
     addTOTable(pass1[i],pass1[i+1]);
   }
-  TESPACO.innerHTML = IESPACO.value+ 'Km';
+  TESPACO.innerHTML = IESPACO.value+ ' Km';
+  let i = 0;
+    if (ITIPO[i].checked) {
+      TTABLETYPE[i].checked= true;
+    }else if(ITIPO[i+1].checked){
+      TTABLETYPE[i+1].checked=true;
+    }else{
+      TTABLETYPE[2].checked=true;
+      TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
+    }
+  document.querySelector('.table').style.display='block';
+  document.querySelector('.form').style.display='none';
 }
 
 

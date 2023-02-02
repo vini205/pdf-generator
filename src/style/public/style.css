@@ -1,42 +1,21 @@
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-stretch: normal;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsiH0C4n.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: normal;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0C4n.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-stretch: normal;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/opensans/v34/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsgH1y4n.ttf) format('truetype');
-}
+@import url('http://fonts.googleapis.com/css?family=Open+Sans&css');
+/*Use &css para funcionar no less*/
 body {
   background-color: #0003E0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 body .form {
   background-color: white;
   margin: 5px;
   width: 90%;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   margin: 10px auto;
   border-radius: 5px;
   padding: 5px;
 }
 body .form h1 {
-  font-size: 2em;
+  text-align: center;
+  font-size: 3em;
 }
 * {
   margin: 0;
@@ -55,7 +34,7 @@ form textarea {
 }
 form textarea {
   width: 100%;
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   padding: 10px;
   box-sizing: border-box;
   font-size: 30px;
@@ -72,7 +51,7 @@ form input {
   vertical-align: baseline;
   transition: border 0.2s;
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif, sans-serif;
 }
 form input:focus {
   border-bottom: 1px solid blue;
@@ -90,10 +69,15 @@ form input[type='button'] {
   border: 1px solid;
   border-radius: 2px;
   background-color: white;
-  transition: 1s all;
+  transition: 0.5s all;
 }
 form input[type='button']:hover {
   background-color: #535353;
+  color: white;
+  transition: 100ms all;
+}
+form input[type='button']:focus {
+  background-color: #000000;
   color: white;
 }
 form p {
@@ -138,6 +122,9 @@ table {
   border-collapse: collapse;
   width: 90vw;
   margin: 2px;
+}
+table td {
+  text-align: center;
 }
 .table__header--info {
   height: 50px;
