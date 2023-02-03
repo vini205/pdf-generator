@@ -38,7 +38,9 @@ function subTime(time01,time02) {
   let newTime1 = t1 + (m1/60);
   let newTime2 = t2 + (m2/60);
   let x = newTime2 - newTime1;
-  let y = x%1;//fica só decimal
+  x = x.toFixed(2);
+  return x;
+  /* let y = x%1;//fica só decimal
   x -=y;//Inteiro
   x = String(x).padStart(2,'0');
   if(y%1>0){
@@ -46,37 +48,59 @@ function subTime(time01,time02) {
   } else{
     y =String(y*60).padEnd(2,'0');
   }
-    return `${x}:${y}`;
+    return `${x}:${y}`; */
 }
 function addTOTable(data,where) {  
-  if(data.tagNAme=='TEXTAREA'){
-
+  if(data.tagName=='TEXTAREA'){
+    tableDefault.push([where,where.value]);
+    //Keep the defult so I can reset the table
     where.value=`${data.value}`;  
-
   } else if(data.type=='date'){
-
+    
+    tableDefault.push([where,where.innerHTML]);
     let date = fixDate(data.value);
-
+    
     if(where.innerHTML=='/2023'){
 
       where.innerHTML =`${date}`; 
-
+      
     }else{
-
+      
       where.innerHTML +=`: ${date}`; 
     }
   }else if(data.type=='time'){
-    where.innerHTML =`${data.value}`; 
-  }
-   else{
+    tableDefault.push([where,where.innerHTML]); 
+    where.innerHTML =`${data.value}`;
+  } else if(data.id=='iespaco') {
+    tableDefault.push([where,where.innerHTML]); 
+    where.innerHTML = data.value+ ' Km';
+  } else if(data.id=="inametec") {
+    tableDefault.push([where,where.innerHTML]); 
+    where.innerHTML = data.value;
+  }  else{
+    tableDefault.push([where,where.innerHTML]);
     where.innerHTML+=`: ${data.value}`;
+
   }    
 }
-
+function resetTable(x) {
+  c(x)
+  for (let i = 0; i < x.length; i++) {
+    const e = x[i];
+    if (e.tagNAme=="TEXTAREA") {
+      e[0].value = e[1];    
+      
+    } else {
+      e[0].innerHTML = e[1];    
+    }
+  }
+  TTABLETYPE[0].checked = false;
+  TTABLETYPE[1].checked = false;
+  TTABLETYPE[2].checked = false;
+}
 /*
   Variables
 */
-
 const ICHAMADO = getElement('ichamado'),
 INAMETEC = getElement('inametec'),
 ICLIENTE = getElement('icliente'),
@@ -126,15 +150,15 @@ const year = data.getFullYear();
 const month = data.getMonth();
 const day = data.getDate();
 
+const tableDefault=[];
+
 putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
 putInInput(['SP'],[IESTADO]);
 
-IDATAOUT.oninput=c(IDATAOUT.value);
 
-
-const pass1 = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,
+const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,
 IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,
-IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO];
+IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO,IESPACO,TESPACO];
 
 btn.addEventListener('click',add);
 /* 
@@ -144,23 +168,32 @@ Se colocar add() ele roda a função que retorna undefined.
 
 */ 
 function add() {
-  for (let i = 0; i < pass1.length; i+=2) {
-    addTOTable(pass1[i],pass1[i+1]);
+  putInInput(`CH${ICHAMADO.value}23`,[ICHAMADO]);
+
+  let i = 0;//Passing ranges
+  if (ITIPO[i].checked) {
+    TTABLETYPE[i].checked= true;
+  }else if(ITIPO[i+1].checked){
+    TTABLETYPE[i+1].checked=true;
+  }else if(ITIPOoUTRO.value != ''){
+    TTABLETYPE[2].checked=true;
+    TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
   }
-  TESPACO.innerHTML = IESPACO.value+ ' Km';
-  let i = 0;
-    if (ITIPO[i].checked) {
-      TTABLETYPE[i].checked= true;
-    }else if(ITIPO[i+1].checked){
-      TTABLETYPE[i+1].checked=true;
-    }else{
-      TTABLETYPE[2].checked=true;
-      TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
-    }
-  THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value)  
-  document.querySelector('.table').style.display='block';
-  document.querySelector('.form').style.display='none';
+  
+  THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value);  
+
+  for (let i = 0; i < topass.length; i+=2) {
+    addTOTable(topass[i],topass[i+1]);
+  }
+  tableDefault.push([THORATOTAL,THORATOTAL.innerHTML]);
+  let a =document.getElementsByClassName('table')[0];
+  a.style.display='block';
+  let b = document.getElementsByClassName('form')[0];
+  b.style.display='none';
 }
 
+function printTable() {
+  window.print()
+}
 
  
