@@ -13,6 +13,11 @@ body .form {
   border-radius: 5px;
   padding: 5px;
 }
+body .form .logo__form {
+  margin: auto;
+  height: 160px;
+  display: block;
+}
 body .form h1 {
   text-align: center;
   font-size: 3em;
@@ -79,8 +84,8 @@ form input[type='reset']:hover {
   color: white;
   transition: 100ms all;
 }
-form input[type='button']:focus,
-form input[type='reset']:focus {
+form input[type='button']:focus-visible,
+form input[type='reset']:focus-visible {
   background-color: #000000;
   color: white;
 }
@@ -110,10 +115,43 @@ form select {
 .tipo__form {
   padding: 20px;
 }
+#btn-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+@media screen and (max-width: 580px) {
+  #btn-holder {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+.printBtn,
+.resetBtn {
+  height: 49px;
+  padding: 10px;
+  background: white;
+  vertical-align: middle;
+  font-size: 1.5em;
+  transition: 500ms all;
+}
+.printBtn:hover,
+.resetBtn:hover {
+  color: white;
+  background-color: rgba(0, 0, 0);
+}
 /*Table Style*/
 .table {
   display: none;
   background-color: white;
+}
+.flex-holder__table {
+  display: flex;
+  justify-content: space-around;
+}
+.flex-holder__table .logo__table {
+  height: 55px;
 }
 table,
 td,

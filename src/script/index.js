@@ -30,6 +30,28 @@ function fixDate(date) {
   let dia = date.slice(8);
   return `${dia}/${mes}/${ano}`;
 }
+  function add() {
+    putInInput(`CH${ICHAMADO.value}23`,[ICHAMADO]);
+  
+    let i = 0;//Passing ranges
+    if (ITIPO[i].checked) {
+      TTABLETYPE[i].checked= true;
+    }else if(ITIPO[i+1].checked){
+      TTABLETYPE[i+1].checked=true;
+    }else if(ITIPOoUTRO.value != ''){
+      TTABLETYPE[2].checked=true;
+      TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
+    }
+    
+    THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value);  
+  
+    for (let i = 0; i < topass.length; i+=2) {
+      addTOTable(topass[i],topass[i+1]);
+    }
+    tableDefault.push([THORATOTAL,THORATOTAL.innerHTML]);
+    let a =document.getElementsByClassName('table')[0];
+    a.style.display='block';
+  }
 function subTime(time01,time02) {
   let t1 = Number(time01.slice(0,2)),
   m2 = Number(time02.slice(3,5)),
@@ -167,33 +189,17 @@ para mais shorturl.at/bdi39.
 Se colocar add() ele roda a função que retorna undefined.
 
 */ 
-function add() {
-  putInInput(`CH${ICHAMADO.value}23`,[ICHAMADO]);
 
-  let i = 0;//Passing ranges
-  if (ITIPO[i].checked) {
-    TTABLETYPE[i].checked= true;
-  }else if(ITIPO[i+1].checked){
-    TTABLETYPE[i+1].checked=true;
-  }else if(ITIPOoUTRO.value != ''){
-    TTABLETYPE[2].checked=true;
-    TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
-  }
-  
-  THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value);  
-
-  for (let i = 0; i < topass.length; i+=2) {
-    addTOTable(topass[i],topass[i+1]);
-  }
-  tableDefault.push([THORATOTAL,THORATOTAL.innerHTML]);
-  let a =document.getElementsByClassName('table')[0];
-  a.style.display='block';
-  let b = document.getElementsByClassName('form')[0];
-  b.style.display='none';
-}
-
-function printTable() {
-  window.print()
-}
-
+const printBtn = document.createElement('button'),resetBtn = document.createElement('button');
+printBtn.classList.add('printBtn');
+resetBtn.classList.add('resetBtn');
+printBtn.addEventListener('click',()=>{
+ print();
+});
+resetBtn.addEventListener('click',()=>{
+  resetTable(tableDefault);
+})
+printBtn.innerText='Baixar PDF ou Imprimir';
+resetBtn.innerText='Resetar formulário';
+getElement('btn-holder').append(printBtn,resetBtn);
  
