@@ -1,7 +1,7 @@
 @import url('http://fonts.googleapis.com/css?family=Open+Sans&css');
 /*Use &css para funcionar no less*/
 body {
-  background-color: #0003E0;
+  background-color: white;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 body .form {
@@ -131,7 +131,9 @@ table td {
 }
 .textTable {
   outline: none;
-  width: 100%;
+  width: 99%;
+  margin-left: 1px;
+  box-sizing: border-box;
   border: none;
   padding: 15px;
   resize: none;

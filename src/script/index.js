@@ -30,6 +30,24 @@ function fixDate(date) {
   let dia = date.slice(8);
   return `${dia}/${mes}/${ano}`;
 }
+function subTime(time01,time02) {
+  let t1 = Number(time01.slice(0,2)),
+  m2 = Number(time02.slice(3,5)),
+  m1=Number(time01.slice(3,5)),
+  t2 = Number(time02.slice(0,2));
+  let newTime1 = t1 + (m1/60);
+  let newTime2 = t2 + (m2/60);
+  let x = newTime2 - newTime1;
+  let y = x%1;//fica só decimal
+  x -=y;//Inteiro
+  x = String(x).padStart(2,'0');
+  if(y%1>0){
+    y =String( Math.ceil(y*60)).padEnd(2,'0');
+  } else{
+    y =String(y*60).padEnd(2,'0');
+  }
+    return `${x}:${y}`;
+}
 function addTOTable(data,where) {  
   if(data.tagNAme=='TEXTAREA'){
 
@@ -92,6 +110,7 @@ TDATAIN = getElement('tdataIn'),
 TDATAOUT = getElement('tdataOut'),
 ThoraIN = getElement('thoraIn'),
 THORAOUT = getElement('thoraOut'),
+THORATOTAL = getElement('thoraTotal'),
 TESPACO = getElement('tespaco'),
 TDEFEITO = getElement('tdefeito'),
 TCAUSA = getElement('tcausa'),
@@ -138,6 +157,7 @@ function add() {
       TTABLETYPE[2].checked=true;
       TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
     }
+  THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value)  
   document.querySelector('.table').style.display='block';
   document.querySelector('.form').style.display='none';
 }
