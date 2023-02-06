@@ -6,6 +6,14 @@ console.log("Working");
 function c(txt) {
       console.log(txt);
 } 
+function addLines(t) {
+  t.style.fontSize='13px';
+  if(t.offsetHeight< t.scrollHeight){
+  let h =Number(t.style.fontSize.slice(0,2));//tamanho do Textarea
+  let newRow = Math.floor(t.scrollHeight/h)
+  t.rows = newRow;
+  }
+}
 function getElement(id=undefined,className=undefined,tag=undefined) {
   if(className===undefined && tag === undefined){
     return document.getElementById(id);
@@ -44,9 +52,11 @@ function fixDate(date) {
       TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
     }   
     THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value);  
-  
+    
     for (let i = 0; i < topass.length; i+=2) {
       addTOTable(topass[i],topass[i+1]);
+      if(topass[i+1].tagName=='TEXTAREA'){
+      addLines(topass[i+1])  
     }
     tableDefault.push([THORATOTAL,THORATOTAL.innerHTML]);
     let a =document.getElementsByClassName('table')[0];
@@ -54,6 +64,7 @@ function fixDate(date) {
     getElement('btn-holder').append(printBtn,resetBtn);
     ICHAMADO.type='number';
   }
+}
 function subTime(time01,time02) {
   let t1 = Number(time01.slice(0,2)),
   m2 = Number(time02.slice(3,5)),
@@ -205,9 +216,3 @@ resetBtn.addEventListener('click',()=>{
 })
 printBtn.innerText='Baixar PDF ou Imprimir';
 resetBtn.innerText='Resetar formulário';
-
-let txta = document.getElementsByTagName('textarea');
-for (let i = 0; i < texta.length; i++) {
-  const element = array[i];
-  
-}

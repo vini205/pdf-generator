@@ -36,6 +36,7 @@ form textarea {
   display: block;
   margin-bottom: 20px;
   resize: none;
+  color: black;
 }
 form textarea {
   width: 100%;
@@ -188,6 +189,7 @@ table td {
   padding: 2px;
   resize: none;
   font-family: Arial, Helvetica, sans-serif;
+  font-size: 13.3px;
 }
 .textarea__td {
   padding: 0;
