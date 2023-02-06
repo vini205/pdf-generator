@@ -114,6 +114,7 @@ form select {
 }
 .tipo__form {
   padding: 20px;
+  margin-bottom: 30px;
 }
 #btn-holder {
   display: flex;
@@ -142,6 +143,11 @@ form select {
   background-color: rgba(0, 0, 0);
 }
 /*Table Style*/
+div.table table td,
+textarea {
+  color: red;
+  border-color: black;
+}
 .table {
   display: none;
   background-color: white;

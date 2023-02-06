@@ -9,6 +9,7 @@
  <link rel="stylesheet" href="../style/public/style.css" >
  <link rel="stylesheet" href="../style/public/print.min.css" media="print">
  <link rel="stylesheet" href="../style/print.less" media="print">
+ <link rel="shortcut icon" href="../img/trs-Logo.webp" type="image/x-icon">
 </head>
 <body>
   <div class="form">
@@ -81,7 +82,14 @@
       </fieldset>
 
       <label for="imotivo">Motivo do chamado</label>
-      <textarea autocomplete="on" name="imotivo" class="text" id="imotivo" cols="30" rows="2"></textarea>
+      <input autocomplete="on" name="imotivo" class="text" id="imotivo" list="motivos">
+      <datalist id="motivos">
+        <option value="Auta temperatura">Auta temperatura</option>
+        <option value="Vazamento de fluído">Vazamento de fluído</option>
+        <option value="Evaporador bloqueado">Evaporador bloqueado</option>
+        <option value="Curto-circuito">Curto-circuito</option>
+        <option value="Equipamento não liga">Equipamento não liga</option>
+      </datalist>
 
       <label for="ihoraIn">Horario de Chegada</label>
       <input type="time" name="ihoraIn" id="iHoraIn">

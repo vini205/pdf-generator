@@ -31,8 +31,9 @@ function fixDate(date) {
   return `${dia}/${mes}/${ano}`;
 }
   function add() {
+    ICHAMADO.type='text';//Para a linha abaixo funcionar
     putInInput(`CH${ICHAMADO.value}23`,[ICHAMADO]);
-  
+    c(ICHAMADO.value);
     let i = 0;//Passing ranges
     if (ITIPO[i].checked) {
       TTABLETYPE[i].checked= true;
@@ -41,8 +42,7 @@ function fixDate(date) {
     }else if(ITIPOoUTRO.value != ''){
       TTABLETYPE[2].checked=true;
       TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
-    }
-    
+    }   
     THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value);  
   
     for (let i = 0; i < topass.length; i+=2) {
@@ -51,6 +51,8 @@ function fixDate(date) {
     tableDefault.push([THORATOTAL,THORATOTAL.innerHTML]);
     let a =document.getElementsByClassName('table')[0];
     a.style.display='block';
+    getElement('btn-holder').append(printBtn,resetBtn);
+    ICHAMADO.type='number';
   }
 function subTime(time01,time02) {
   let t1 = Number(time01.slice(0,2)),
@@ -73,6 +75,9 @@ function subTime(time01,time02) {
     return `${x}:${y}`; */
 }
 function addTOTable(data,where) {  
+  if (where.value == data.value || where.innerHTML == data.value) {//Caso add +1 vezes não duplicar valores
+    return
+  }
   if(data.tagName=='TEXTAREA'){
     tableDefault.push([where,where.value]);
     //Keep the defult so I can reset the table
@@ -106,14 +111,13 @@ function addTOTable(data,where) {
   }    
 }
 function resetTable(x) {
-  c(x)
-  for (let i = 0; i < x.length; i++) {
-    const e = x[i];
-    if (e.tagNAme=="TEXTAREA") {
-      e[0].value = e[1];    
-      
-    } else {
-      e[0].innerHTML = e[1];    
+    for (let i = 0; i < x.length; i++) {
+      const e = x[i];
+      if (e.tagNAme=="TEXTAREA") {
+        e[0].value = e[1];    
+        
+      } else {
+        e[0].innerHTML = e[1];    
     }
   }
   TTABLETYPE[0].checked = false;
@@ -201,5 +205,9 @@ resetBtn.addEventListener('click',()=>{
 })
 printBtn.innerText='Baixar PDF ou Imprimir';
 resetBtn.innerText='Resetar formulário';
-getElement('btn-holder').append(printBtn,resetBtn);
- 
+
+let txta = document.getElementsByTagName('textarea');
+for (let i = 0; i < texta.length; i++) {
+  const element = array[i];
+  
+}
