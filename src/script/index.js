@@ -39,9 +39,10 @@ function fixDate(date) {
   return `${dia}/${mes}/${ano}`;
 }
   function add() {
-    ICHAMADO.type='text';//Para a linha abaixo funcionar
-    putInInput(`CH${ICHAMADO.value}23`,[ICHAMADO]);
-    c(ICHAMADO.value);
+    let keep = ICHAMADO.value;
+    ICHAMADO.type='text';
+    ICHAMADO.value=`CH${keep}23`;
+    c(keep);
     let i = 0;//Passing ranges
     if (ITIPO[i].checked) {
       TTABLETYPE[i].checked= true;
@@ -62,8 +63,9 @@ function fixDate(date) {
     let a =document.getElementsByClassName('table')[0];
     a.style.display='block';
     getElement('btn-holder').append(printBtn,resetBtn);
-    ICHAMADO.type='number';
   }
+  ICHAMADO.type='number'
+  ICHAMADO.value=keep;
 }
 function subTime(time01,time02) {
   let t1 = Number(time01.slice(0,2)),
@@ -134,6 +136,7 @@ function resetTable(x) {
   TTABLETYPE[0].checked = false;
   TTABLETYPE[1].checked = false;
   TTABLETYPE[2].checked = false;
+  ICHAMADO.type='number';
 }
 /*
   Variables
