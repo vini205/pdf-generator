@@ -143,6 +143,35 @@ form select {
   color: white;
   background-color: rgba(0, 0, 0);
 }
+.materialNumberHolder {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 580px) {
+  .materialNumberHolder {
+    flex-direction: column;
+  }
+}
+.materialNumberHolder input {
+  margin: 0;
+}
+.materialNumberHolder p {
+  cursor: pointer;
+  border: 1px solid;
+  padding: 10px;
+  font-family: inherit;
+  background: white;
+  font-weight: 800;
+  transition: 0.3s all;
+}
+.materialNumberHolder p:hover {
+  background-color: #000000cc;
+  box-shadow: 0px 1px 3px 0px;
+  color: white;
+}
 /*Table Style*/
 div.table table td,
 textarea {

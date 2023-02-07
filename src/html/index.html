@@ -22,7 +22,7 @@
       <input autocomplete="name" type="text" name="inametec" id="inametec">
 
       <label for="ichamado">Número do Chamado</label>
-      <input placeholder="Apenas o número Ex: 1234 " required type="number" name="ichamado" id="ichamado">
+      <input placeholder="Apenas o número Ex: 1234 " type="number" name="ichamado" id="ichamado">
       
       <label for="icliente">Cliente</label>
       <input autocomplete="additional-name" type="text" name="icliente" id="icliente" placeholder="Cliente">
@@ -113,7 +113,10 @@
       <textarea autocomplete="on" placeholder="Serviço executado" name="iservico" class="text" id="iservico" cols="30" rows="2"></textarea>
 
       <label for="imaterialNumber">Quantos materiais foram usados?</label>
-      <input  type="number" class="material_number"  name="imaterialNumber" id="imaterialNumber">
+      <div class="materialNumberHolder" id="div__material">
+        <input  type="number" class="material_number"  name="imaterialNumber" id="imaterialNumber">
+        <p class="materialNumberConfirm" id="materialConfirm" onclick="verifyMaterial()">Confirmar</p>
+      </div>
 
       <label for="iobs">Observação</label>
       <textarea autocomplete="on" name="iobs" placeholder="Observação" class="text" id="iobs" cols="30" rows="2"></textarea>
@@ -210,7 +213,6 @@
         <tr>
           <td class="textarea__td" colspan="12"><textarea id="tservico" name="textTable" class="textTable" cols="30" rows="3"></textarea></td>
         </tr>
-        <!-- Material 
         <tr>
           <th colspan="12" class="group-title">Material requisitado</th>
         </tr>
@@ -233,7 +235,6 @@
           <th>Total</th>
           <td colspan="2">R$ 100</td>
         </tr>
--->
         <tr>
           <th colspan="12" class="group-title">Observação</th>
         </tr>

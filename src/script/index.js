@@ -1,5 +1,5 @@
 console.log("Working");
-
+var materialCount =0;
 /*
   Functions
 */
@@ -138,6 +138,47 @@ function resetTable(x) {
   TTABLETYPE[2].checked = false;
   ICHAMADO.type='number';
 }
+const holder = document.getElementById('div__material');
+function addMateriaButtons(n){
+  const pCorfim = document.getElementById('materialConfirm');
+  const qtd = document.createElement('input'), valorTotal = document.createElement('input'),
+  valorUnit = document.createElement('input'), descricao = document.createElement('input'), unidade = document.createElement('input');
+  let t =['imqtd','imvalorTotal','imvalorUnit','imdescricao','imunidade'];
+
+  qtd.id=t[0] + n;
+  valorTotal.id=t[1] +n;
+  valorUnit.id=t[2] +n;
+  descricao.id=t[3] +n;
+  unidade.id=t[4] +n;
+  qtd.placeholder='Quantidade';
+  valorTotal.placeholder='Valor Total';
+  valorUnit.placeholder='Valor unitário';
+  descricao.placeholder='Descrição';
+  unidade.placeholder='Unidade';
+
+  c('IN')
+
+
+  const p = document.createElement('p');
+  p.id='resetMaterialBtn'+n;
+  p.innerText='Tirar materiais';
+  
+  holder.removeChild(IMATERIALNUMBER);
+  holder.removeChild(pCorfim);
+  holder.append(descricao,qtd,unidade,valorTotal,valorUnit,p);
+
+  p.addEventListener('click',()=>{
+    c('delet Materials')
+      holder.removeChild(descricao);
+      holder.removeChild(qtd);
+      holder.removeChild(unidade);
+      holder.removeChild(p);
+      holder.removeChild(valorTotal);
+      holder.removeChild(valorUnit);
+
+    holder.append(IMATERIALNUMBER,pCorfim);
+  });
+}
 /*
   Variables
 */
@@ -192,22 +233,19 @@ const day = data.getDate();
 
 const tableDefault=[];
 
+const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,
+  IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,
+  IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO,IESPACO,TESPACO];
+  
+
 putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
 putInInput(['SP'],[IESTADO]);
 
-
-const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,
-IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,
-IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO,IESPACO,TESPACO];
+/*
+  Run script
+*/
 
 btn.addEventListener('click',add);
-/* 
-Add funciona porque é como se fosse um atributo que é atribuido ao evento, e dps roda como uma função
-para mais shorturl.at/bdi39. 
-Se colocar add() ele roda a função que retorna undefined.
-
-*/ 
-
 const printBtn = document.createElement('button'),resetBtn = document.createElement('button');
 printBtn.classList.add('printBtn');
 resetBtn.classList.add('resetBtn');
@@ -219,3 +257,16 @@ resetBtn.addEventListener('click',()=>{
 })
 printBtn.innerText='Baixar PDF ou Imprimir';
 resetBtn.innerText='Resetar formulário';
+
+var _i = 0;
+function verifyMaterial() {
+  let n =Number(IMATERIALNUMBER.value);
+  if (n>=1){
+    while(_i<n){
+      addMateriaButtons('0'+_i);
+      _i++;
+    }
+  }
+  
+}
+
