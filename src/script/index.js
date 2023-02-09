@@ -58,6 +58,8 @@ function fixDate(date) {
       TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
     }   
     THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value);  
+    THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value);  
+    THORATOTAL.innerHTML = subTime(IHORAIN.value,IHORAOUT.value);     
     
     for (let i = 0; i < topass.length; i+=2) {
       addTOTable(topass[i],topass[i+1]);
@@ -69,10 +71,18 @@ function fixDate(date) {
     a.style.display='block';
     getElement('btn-holder').append(printBtn,resetBtn);
   }
-  addMaterialTable(holder.children.length)
   ICHAMADO.type='number'
   ICHAMADO.value=keep;
-  addMaterialToTable();
+  if(holder.children[0]!== IMATERIALNUMBER){
+    c(holder)
+    addMaterialTable(holder.children.length);
+    addMaterialToTable();
+  }else{
+    let a =document.querySelectorAll('.material__td');
+    a.forEach((e)=>{
+      e.style.display='none';
+    })    
+  }
 }
 function subTime(time01,time02) {
   let t1 = Number(time01.slice(0,2)),
@@ -131,7 +141,6 @@ function resetTable(x) {
       const e = x[i];
       if (e.tagNAme=="TEXTAREA") {
         e[0].value = e[1];    
-        
       } else {
         e[0].innerHTML = e[1];    
     }
@@ -141,9 +150,12 @@ function resetTable(x) {
   TTABLETYPE[2].checked = false;
   ICHAMADO.type='number';
   addCount--;
+  
+  const a = document.querySelectorAll('.material__td');
+  a.forEach((e)=>{
+    e.style.display='revert';
+  })    
 }
-
-
 function createMaterialBtns(n){
   const inputs =[];
   for (let i = 0; i < 5; i++) {
@@ -180,9 +192,8 @@ function createMaterialBtns(n){
   div.append(inputs[0],inputs[1],inputs[2],inputs[3],inputs[4],p);
   return div
 }
-
 function addMaterialTable(n) {
-  const materialTR = [document.querySelector('#materiais')]
+  const materialTR = [document.querySelector('#materiais')];
   n = n-1;
   for (let i =0;i<n;i++){
     materialTR.push(materialTR[i].cloneNode(true));
@@ -206,7 +217,7 @@ function addMaterialToTable() {
       e.innerHTML = values[td].value;
     }
   }
-  totalInput.innerHTML = `R$ ${sum}`;
+    totalInput.innerHTML = `R$ ${sum}`;
   c(sum)
 }
 /*
@@ -265,7 +276,7 @@ const year = data.getFullYear();
 const month = data.getMonth();
 const day = data.getDate();
 
-const tableDefault=[];
+const tableDefault=[];//Recebe array com [elemento:HTMLCOLLECTION,valor padrão:string]
 
 const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,
   IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,
