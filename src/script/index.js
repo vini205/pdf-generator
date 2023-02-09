@@ -1,5 +1,5 @@
 console.log("Working");
-var materialCount =0;
+var addCount =0;
 /*
   Functions
 */
@@ -39,6 +39,11 @@ function fixDate(date) {
   return `${dia}/${mes}/${ano}`;
 }
   function add() {
+    if (addCount!==0) {
+      alert('Resete a tabela primeiro')
+      return
+    }
+    addCount++;
     let keep = ICHAMADO.value;
     ICHAMADO.type='text';
     ICHAMADO.value=`CH${keep}23`;
@@ -88,9 +93,6 @@ function subTime(time01,time02) {
     return `${x}:${y}`; */
 }
 function addTOTable(data,where) {  
-  if (where.value == data.value || where.innerHTML == data.value) {//Caso add +1 vezes não duplicar valores
-    return
-  }
   if(data.tagName=='TEXTAREA'){
     tableDefault.push([where,where.value]);
     //Keep the defult so I can reset the table
@@ -114,7 +116,7 @@ function addTOTable(data,where) {
   } else if(data.id=='iespaco') {
     tableDefault.push([where,where.innerHTML]); 
     where.innerHTML = data.value+ ' Km';
-  } else if(data.id=="inametec") {
+  } else if(data.id=="inametec" || data.id ==='iclienteName') {
     tableDefault.push([where,where.innerHTML]); 
     where.innerHTML = data.value;
   }  else{
@@ -137,6 +139,7 @@ function resetTable(x) {
   TTABLETYPE[1].checked = false;
   TTABLETYPE[2].checked = false;
   ICHAMADO.type='number';
+  addCount--;
 }
 const holder = document.getElementById('div__material');
 function addMateriaButtons(n){
@@ -200,7 +203,9 @@ IDEFEITO = getElement('idefeito'),
 ICAUSA = getElement('icausa'),
 ISERVICO = getElement('iservico'),
 IMATERIALNUMBER = getElement('imaterialNumber'),
-IOBS = getElement('iobs');
+IOBS = getElement('iobs'),
+ICLIENTENAME = getElement('iclienteName')
+;
 
 const TCHAMADO = getElement('tchamado'),
 TCLIENTE = getElement('tcliente'),
@@ -235,7 +240,7 @@ const tableDefault=[];
 
 const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,
   IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,
-  IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO,IESPACO,TESPACO];
+  IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO,IESPACO,TESPACO,ICLIENTENAME,TCLI];
   
 
 putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
@@ -256,16 +261,18 @@ resetBtn.addEventListener('click',()=>{
   resetTable(tableDefault);
 })
 printBtn.innerText='Baixar PDF ou Imprimir';
-resetBtn.innerText='Resetar formulário';
+resetBtn.innerText='Resetar Tabela';
 
-var _i = 0;
 function verifyMaterial() {
   let n =Number(IMATERIALNUMBER.value);
+  let _i = 0;
   if (n>=1){
-    while(_i<n){
-      addMateriaButtons('0'+_i);
-      _i++;
-    }
+    do{
+      c(_i)
+        addMateriaButtons(`0${_i}`);
+        _i++;
+        c(_i)
+    }while(_i<n)
   }
   
 }

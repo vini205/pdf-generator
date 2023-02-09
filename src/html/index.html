@@ -5,11 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerar Relatório</title>
+  
   <link rel="stylesheet" href="../style/style.less">
- <link rel="stylesheet" href="../style/public/style.css" >
- <link rel="stylesheet" href="../style/public/print.min.css" media="print">
- <link rel="stylesheet" href="../style/print.less" media="print">
- <link rel="shortcut icon" href="../img/trs.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../style/public/style.min.css" >
+
+  <link rel="stylesheet" href="../style/public/print.min.css" media="print">
+  <link rel="stylesheet" href="../style/print.less" media="print">
+
+  <link rel="shortcut icon" href="../img/trs.ico" type="image/x-icon">
 </head>
 <body>
   <div class="form">
@@ -18,8 +21,11 @@
 
     <form autocomplete='on' >
 
-      <label for="inametec">Nome do técnico</label>
-      <input autocomplete="name" type="text" name="inametec" id="inametec">
+      <label for="inametec">Nome do Técnico</label>
+      <input autocomplete="name" type="text" placeholder="Nome do Técnico"  name="inametec" id="inametec">
+
+      <label for="iclienteName">Nome do Cliente</label>
+      <input type="text" name="iclienteName" id="iclienteName" placeholder="Nome do cliente">
 
       <label for="ichamado">Número do Chamado</label>
       <input placeholder="Apenas o número Ex: 1234 " type="number" name="ichamado" id="ichamado">
@@ -121,7 +127,6 @@
       <label for="iobs">Observação</label>
       <textarea autocomplete="on" name="iobs" placeholder="Observação" class="text" id="iobs" cols="30" rows="2"></textarea>
 
-      <input type="reset" value="Resetar dados">
       <input type="button" id="btn" value="Adicionar">
 
     </form>
@@ -192,7 +197,6 @@
         </tr>
 
         <!-- Descrição -->
-        <!-- textarea temporário -->
         <tr>
           <th colspan="12"  class="group-title">Defeito Constatado</th>
         </tr>
@@ -213,7 +217,7 @@
         <tr>
           <td class="textarea__td" colspan="12"><textarea id="tservico" name="textTable" class="textTable" cols="30" rows="3"></textarea></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <th colspan="12" class="group-title">Material requisitado</th>
         </tr>
         <tr>
@@ -234,7 +238,7 @@
           <td colspan="7"></td>
           <th>Total</th>
           <td colspan="2">R$ 100</td>
-        </tr>
+        </tr> -->
         <tr>
           <th colspan="12" class="group-title">Observação</th>
         </tr>
