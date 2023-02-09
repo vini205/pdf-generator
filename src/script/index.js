@@ -69,6 +69,7 @@ function fixDate(date) {
     a.style.display='block';
     getElement('btn-holder').append(printBtn,resetBtn);
   }
+  addMaterialTable(holder.children.length)
   ICHAMADO.type='number'
   ICHAMADO.value=keep;
 }
@@ -141,50 +142,58 @@ function resetTable(x) {
   ICHAMADO.type='number';
   addCount--;
 }
-const holder = document.getElementById('div__material');
-function addMateriaButtons(n){
-  const pCorfim = document.getElementById('materialConfirm');
-  const qtd = document.createElement('input'), valorTotal = document.createElement('input'),
-  valorUnit = document.createElement('input'), descricao = document.createElement('input'), unidade = document.createElement('input');
-  let t =['imqtd','imvalorTotal','imvalorUnit','imdescricao','imunidade'];
-
-  qtd.id=t[0] + n;
-  valorTotal.id=t[1] +n;
-  valorUnit.id=t[2] +n;
-  descricao.id=t[3] +n;
-  unidade.id=t[4] +n;
-  qtd.placeholder='Quantidade';
-  valorTotal.placeholder='Valor Total';
-  valorUnit.placeholder='Valor unitário';
-  descricao.placeholder='Descrição';
-  unidade.placeholder='Unidade';
-
-  c('IN')
 
 
+function createMaterialBtns(n){
+  const inputs =[];
+  for (let i = 0; i < 5; i++) {
+    inputs.push(document.createElement('input'))    
+  }
+  const div = document.createElement('div');
+  c(inputs.length)
+  div.id= 'div'+n;
+  inputs[0].id= 'imqtd' + n;
+  inputs[1].id= 'imvalorTotal' +n;
+  inputs[2].id= 'imvalorUnit' +n;
+  inputs[3].id= 'imdescricao' +n;
+  inputs[4].id= 'imunidade' +n;
+  inputs[0].placeholder='Quantidade';
+  inputs[1].placeholder='Valor Total';
+  inputs[2].placeholder='Valor unitário';
+  inputs[3].placeholder='Descrição';
+  inputs[4].placeholder='Unidade';
+  
   const p = document.createElement('p');
   p.id='resetMaterialBtn'+n;
   p.innerText='Tirar materiais';
-  
-  holder.removeChild(IMATERIALNUMBER);
-  holder.removeChild(pCorfim);
-  holder.append(descricao,qtd,unidade,valorTotal,valorUnit,p);
+  p.classList.add('material__p');
+  div.classList.add('material__div')
 
   p.addEventListener('click',()=>{
-    c('delet Materials')
-      holder.removeChild(descricao);
-      holder.removeChild(qtd);
-      holder.removeChild(unidade);
-      holder.removeChild(p);
-      holder.removeChild(valorTotal);
-      holder.removeChild(valorUnit);
-
-    holder.append(IMATERIALNUMBER,pCorfim);
+    if(holder.children[1] === undefined){
+      holder.append(IMATERIALNUMBER,pCorfim)
+    }
+    div.remove();
   });
+  div.append(inputs[0],inputs[1],inputs[2],inputs[3],inputs[4],p);
+  return div
+}
+
+function addMaterialTable(n) {
+  const materialTR = [document.querySelector('#materiais')]
+  n = n-1;
+  for (let i =0;i<n;i++){
+    materialTR.push(materialTR[i].cloneNode(true));
+    materialTR[i].after(materialTR[i+1]);
+  }
+  c(`Added ${materialTR.length} TRs`)
 }
 /*
   Variables
 */
+const holder = document.getElementById('div__material');
+const pCorfim = document.getElementById('materialConfirm');
+
 const ICHAMADO = getElement('ichamado'),
 INAMETEC = getElement('inametec'),
 ICLIENTE = getElement('icliente'),
@@ -266,14 +275,21 @@ resetBtn.innerText='Resetar Tabela';
 function verifyMaterial() {
   let n =Number(IMATERIALNUMBER.value);
   let _i = 0;
+  c(n);
   if (n>=1){
-    do{
-      c(_i)
-        addMateriaButtons(`0${_i}`);
-        _i++;
-        c(_i)
-    }while(_i<n)
+    holder.removeChild(IMATERIALNUMBER);
+    holder.removeChild(pCorfim);
+    let i = [];
+    while (n>_i) {
+      let d = createMaterialBtns(`0${_i}`);
+      c(d);
+      i.push(d)
+      _i++;
+    }
+    for (const input of i) {
+      holder.appendChild(input)
+    }
+    
   }
-  
 }
 
