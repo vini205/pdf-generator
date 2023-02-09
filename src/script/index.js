@@ -72,6 +72,7 @@ function fixDate(date) {
   addMaterialTable(holder.children.length)
   ICHAMADO.type='number'
   ICHAMADO.value=keep;
+  addMaterialToTable();
 }
 function subTime(time01,time02) {
   let t1 = Number(time01.slice(0,2)),
@@ -99,7 +100,6 @@ function addTOTable(data,where) {
     //Keep the defult so I can reset the table
     where.value=`${data.value}`;  
   } else if(data.type=='date'){
-    
     tableDefault.push([where,where.innerHTML]);
     let date = fixDate(data.value);
     
@@ -150,7 +150,6 @@ function createMaterialBtns(n){
     inputs.push(document.createElement('input'))    
   }
   const div = document.createElement('div');
-  c(inputs.length)
   div.id= 'div'+n;
   inputs[0].id= 'imqtd' + n;
   inputs[1].id= 'imvalorTotal' +n;
@@ -162,12 +161,15 @@ function createMaterialBtns(n){
   inputs[2].placeholder='Valor unitário';
   inputs[3].placeholder='Descrição';
   inputs[4].placeholder='Unidade';
+  inputs[0].type='number';
+  inputs[1].type='number';
+  inputs[2].type='number';
   
   const p = document.createElement('p');
   p.id='resetMaterialBtn'+n;
   p.innerText='Tirar materiais';
   p.classList.add('material__p');
-  div.classList.add('material__div')
+  div.classList.add('material__div');
 
   p.addEventListener('click',()=>{
     if(holder.children[1] === undefined){
@@ -186,7 +188,26 @@ function addMaterialTable(n) {
     materialTR.push(materialTR[i].cloneNode(true));
     materialTR[i].after(materialTR[i+1]);
   }
-  c(`Added ${materialTR.length} TRs`)
+}
+function addMaterialToTable() {
+  const materiais = document.querySelectorAll('#materiais');
+  const totalInput =  getElement('tvalorTotal');
+  let sum = 0;
+  for (let i = 0; i < materiais.length; i++) {
+    const element = materiais[i];//Acessing TR
+    let tag = '0'+i;
+    const values = [document.getElementById('imdescricao'+tag),
+    document.getElementById('imqtd'+tag),document.getElementById('imunidade'+tag),
+    document.getElementById('imvalorUnit'+tag),
+    document.getElementById('imvalorTotal'+tag)];
+    sum += Number(values[4].value)
+    for (let td = 0; td < element.cells.length; td++) {
+      const e = element.cells[td];//Acessing TD
+      e.innerHTML = values[td].value;
+    }
+  }
+  totalInput.innerHTML = `R$ ${sum}`;
+  c(sum)
 }
 /*
   Variables
@@ -213,8 +234,7 @@ ICAUSA = getElement('icausa'),
 ISERVICO = getElement('iservico'),
 IMATERIALNUMBER = getElement('imaterialNumber'),
 IOBS = getElement('iobs'),
-ICLIENTENAME = getElement('iclienteName')
-;
+ICLIENTENAME = getElement('iclienteName');
 
 const TCHAMADO = getElement('tchamado'),
 TCLIENTE = getElement('tcliente'),
@@ -282,7 +302,6 @@ function verifyMaterial() {
     let i = [];
     while (n>_i) {
       let d = createMaterialBtns(`0${_i}`);
-      c(d);
       i.push(d)
       _i++;
     }
