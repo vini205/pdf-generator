@@ -1,0 +1,1 @@
+{"mappings":"ACAA,wBAGA","sources":["index.83729880.css","src/style/print.less"],"sourcesContent":["div.table {\n  display: block;\n}\n\ndiv.form {\n  display: none;\n}\n\n/*# sourceMappingURL=index.83729880.css.map */\n","div.table{\r\n  display: block;\r\n}\r\ndiv.form{\r\n  display: none;\r\n}"],"names":[],"version":3,"file":"index.83729880.css.map"}

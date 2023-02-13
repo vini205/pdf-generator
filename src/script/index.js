@@ -215,7 +215,11 @@ function addMaterialToTable() {
       const e = element.cells[td];//Acessing TD
       let value = values[td].value;
       if(values[td].type == 'number'){
-        e.innerHTML = `R$ ${value}`;
+        if(values[td].value===''){
+          e.innerHTML = 'R$ 0'
+        }else{
+          e.innerHTML = `R$ ${value}`;
+        }
       }else{
         e.innerHTML = value;
 
