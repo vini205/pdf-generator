@@ -47,7 +47,6 @@ function fixDate(date) {
     let keep = ICHAMADO.value;
     ICHAMADO.type='text';
     ICHAMADO.value=`CH${keep}23`;
-    c(keep);
     let i = 0;//Passing ranges
     if (ITIPO[i].checked) {
       TTABLETYPE[i].checked= true;
@@ -74,7 +73,6 @@ function fixDate(date) {
   ICHAMADO.type='number'
   ICHAMADO.value=keep;
   if(holder.children[0]!== IMATERIALNUMBER){
-    c(holder)
     addMaterialTable(holder.children.length);
     addMaterialToTable();
   }else{
@@ -211,14 +209,21 @@ function addMaterialToTable() {
     document.getElementById('imqtd'+tag),document.getElementById('imunidade'+tag),
     document.getElementById('imvalorUnit'+tag),
     document.getElementById('imvalorTotal'+tag)];
+    values[4].value = Number(values[1].value) * Number(values[3].value);
     sum += Number(values[4].value)
     for (let td = 0; td < element.cells.length; td++) {
       const e = element.cells[td];//Acessing TD
-      e.innerHTML = values[td].value;
+      let value = values[td].value;
+      if(values[td].type == 'number'){
+        e.innerHTML = `R$ ${value}`;
+      }else{
+        e.innerHTML = value;
+
+      }
     }
   }
     totalInput.innerHTML = `R$ ${sum}`;
-  c(sum)
+  
 }
 /*
   Variables
@@ -282,8 +287,16 @@ const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,ID
   IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,
   IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO,IESPACO,TESPACO,ICLIENTENAME,TCLI];
   
+if(month>9 && day>9){
+  putInInput(`${year}-${month}-${day}`,[IDATA,IDATAOUT]);
 
-putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
+}else if(day>9){
+  putInInput(`${year}-0${month}-${day}`,[IDATA,IDATAOUT]);
+}else if(month>9){
+  putInInput(`${year}-${month}-0${day}`,[IDATA,IDATAOUT]);
+}else{
+  putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
+}
 putInInput(['SP'],[IESTADO]);
 
 /*
@@ -306,7 +319,6 @@ resetBtn.innerText='Resetar Tabela';
 function verifyMaterial() {
   let n =Number(IMATERIALNUMBER.value);
   let _i = 0;
-  c(n);
   if (n>=1){
     holder.removeChild(IMATERIALNUMBER);
     holder.removeChild(pCorfim);
