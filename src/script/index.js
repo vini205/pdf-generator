@@ -47,11 +47,10 @@ function fixDate(date) {
     let keep = ICHAMADO.value;
     ICHAMADO.type='text';
     ICHAMADO.value=`CH${keep}23`;
-    let i = 0;//Passing ranges
-    if (ITIPO[i].checked) {
-      TTABLETYPE[i].checked= true;
-    }else if(ITIPO[i+1].checked){
-      TTABLETYPE[i+1].checked=true;
+    if (ITIPO[0].checked) {
+      TTABLETYPE[1].checked= true;
+    }else if(ITIPO[1].checked){
+      TTABLETYPE[0].checked=true;
     }else if(ITIPOoUTRO.value != ''){
       TTABLETYPE[2].checked=true;
       TTIPOOUTRO.innerHTML= ITIPOoUTRO.value;
@@ -128,7 +127,11 @@ function addTOTable(data,where) {
   } else if(data.id=="inametec" || data.id ==='iclienteName') {
     tableDefault.push([where,where.innerHTML]); 
     where.innerHTML = data.value;
-  }  else{
+  }else if(where.id === 'tmotivo'){
+    tableDefault.push([where,where.innerHTML]);
+    where.innerHTML=`${data.value}`;
+  } 
+  else{
     tableDefault.push([where,where.innerHTML]);
     where.innerHTML+=`: ${data.value}`;
 
@@ -338,4 +341,3 @@ function verifyMaterial() {
     
   }
 }
-
