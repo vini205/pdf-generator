@@ -217,13 +217,16 @@ function addMaterialToTable() {
     for (let td = 0; td < element.cells.length; td++) {
       const e = element.cells[td];//Acessing TD
       let value = values[td].value;
-      if(values[td].type == 'number'){
+      let m = values[td].id.slice(0,5);
+      c(m);
+      if(values[td].type == 'number' && m !=='imqtd'){
         if(values[td].value===''){
-          e.innerHTML = 'R$ 0'
+          e.innerHTML = 'R$ 0';
         }else{
           e.innerHTML = `R$ ${value}`;
         }
       }else{
+        
         e.innerHTML = value;
 
       }
