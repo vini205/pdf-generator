@@ -235,6 +235,62 @@ function addMaterialToTable() {
     totalInput.innerHTML = `R$ ${sum}`;
   
 }
+const imageText = {
+
+}
+function updateImgPreview() {
+  const holder = document.querySelector('.preview__img');
+  images = IIMAGES.files;
+  if(images.length ===0){
+    return 'Sem imagens'
+
+  }else if(images.length===0 && holder.hasChildNodes()){
+    holder.classList.remove('preview__img--visible');
+    return 'Holder de img deletado'
+  } else{
+    for (const image of images) {
+    const imgHolder = document.createElement('div');
+    const img = document.createElement('img');
+    imgHolder.classList.add('image__holder');
+    img.classList.add('img');
+    holder.classList.add('preview__img--visible');
+    img.src = URL.createObjectURL(image);
+    img.alt = image.name;
+    imgHolder.appendChild(img);
+    holder.append(imgHolder);
+    imgHolder.addEventListener('dblclick',(e)=>{
+      e.target.remove();
+    },true);
+    imgHolder.addEventListener('click',(event)=>popOutImg(event));
+    imageText[img.alt]='';
+    }
+    return `${images.length} imagens adicionadas`
+  }
+}
+function popOutImg(e) {
+  const yPosition = e.y;
+  const imgRefer = e.target.id;//IMg para colocar no OBJ
+  const div = document.createElement('div');
+  const label = document.createElement('label');
+  const input = document.createElement('input');
+  const name = 'iimage'+yPosition;
+  label.for = name;
+  input.name =name;
+  div.classList.add('popOut');
+  
+  input.addEventListener('input',(e)=>{
+    //Fechar PopOut
+    div.remove();
+  })
+
+  
+
+  c(e);
+}
+function addImgToTable() {
+  const tr = document.querySelector('.tr__img');
+  tr.style.display='revert';
+}
 /*
   Variables
 */
@@ -260,7 +316,8 @@ ICAUSA = getElement('icausa'),
 ISERVICO = getElement('iservico'),
 IMATERIALNUMBER = getElement('imaterialNumber'),
 IOBS = getElement('iobs'),
-ICLIENTENAME = getElement('iclienteName');
+ICLIENTENAME = getElement('iclienteName'),
+IIMAGES = getElement('iimages');
 
 const TCHAMADO = getElement('tchamado'),
 TCLIENTE = getElement('tcliente'),
@@ -290,7 +347,7 @@ const data = new Date();
 const year = data.getFullYear();
 const month = data.getMonth();
 const day = data.getDate();
-
+IIMAGES.addEventListener('change',updateImgPreview);
 const tableDefault=[];//Recebe array com [elemento:HTMLCOLLECTION,valor padrão:string]
 
 const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,

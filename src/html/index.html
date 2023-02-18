@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="../style/style.less">
   <link rel="stylesheet" href="../style/print.less" media="print">
 
+  <link rel="stylesheet" href="../style/public/style.min.css">
   <link rel="shortcut icon" href="../img/trs.ico" type="image/x-icon">
 </head>
 <body>
@@ -122,7 +123,12 @@
       <label for="iobs">Observação</label>
       <textarea autocomplete="on" name="iobs" placeholder="Observação" class="text" id="iobs" cols="30" rows="2"></textarea>
 
-      <input type="button" id="btn" value="Adicionar">
+      <label for="iimages" id="iimages-label">Adicionar Imagens</label>
+      <input type="file" name="iimages" id="iimages" accept=".png, .jpg, .jpeg" multiple>
+      <div class="preview__img">
+
+      </div>
+      <input type="button" id="btn" value="Adicionar" >
 
     </form>
       <div id="btn-holder">
@@ -259,8 +265,18 @@
           <td class="textarea__td" colspan="12"><textarea name="textTable" id="tobs" class="textTable" cols="30" rows="3"></textarea></td>
         </tr>
 
-   
-   
+        <!--
+          Images
+        -->
+        
+        <tr class="tr__img">
+          <td colspan="12">
+            <div class="holder__img">
+
+            </div>
+          </td>
+        </tr>
+        
         <!-- Assinaturas -->
         <tr class="assinatura__table">
           <th colspan="4">Técnico responsável</th>

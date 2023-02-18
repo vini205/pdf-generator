@@ -5,9 +5,11 @@
 @secondary:#0003E0;
 @terciary:#F0E91D;
 @font-size:2em;
-@font-size-Title:3em;
+@font-size-Title:2em;
 @font-family: 'Open Sans',Arial, Helvetica, sans-serif;
 @font-table:10pt;
+@marginb:20px;
+
 
 body{
  background-color: white;
@@ -21,6 +23,7 @@ body{
     border-radius: 5px;
     padding: 5px;
     .logo__form{
+      max-width: 100%;
       margin: auto;
       height: 160px;
       display: block;
@@ -40,7 +43,7 @@ form{
   font-size: @font-size;
   input,select,textarea{
     display: block;
-    margin-bottom: 20px;
+    margin-bottom: @marginb;
     resize: none;
     color: black;
   }
@@ -74,7 +77,7 @@ form{
     margin-bottom: 0;
   }
   input[type='date']{
-    background-color: yellow;
+    background-color: @terciary;
     height: 30px;
     border: 1px solid black;
   }
@@ -119,7 +122,7 @@ form{
 }
 .tipo__form{
   padding: 20px;
-  margin-bottom: 30px;
+  margin-bottom: @marginb;
 }
 #btn-holder{
   display: flex;
@@ -158,7 +161,7 @@ form{
   flex-wrap: wrap;
   gap: 30px;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: @marginb;
   justify-content: center;
   @media screen and (max-width:580px){
     flex-direction: column;
@@ -181,11 +184,51 @@ form{
     }
   }
 }
-#tcliente,#tcidade,#testado,#tendereco{
-  text-align: start;
+
+#iimages{
+  display: none;
+}
+#iimages-label{
+  display: block;
+  cursor: pointer;
+  border: solid 1px;
+  text-align: center;
+  margin-bottom: @marginb;
+  padding: 5px;
+  background-color: @terciary;
+}
+.preview__img{
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  margin-bottom: @marginb;
+  .image__holder{
+    margin: 5px 13px;
+    .img{
+      width: 200px;
+      height: 200px;
+    }
+  }
+  &--visible{
+    border: 1px solid;
+    &::-webkit-scrollbar{
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track-piece{
+      background: rgba(0, 0, 0, 0.404);
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color: black;
+      border-radius: 5px;
+    }
+  }
 }
 
 /*Table Style*/
+
+#tcliente,#tcidade,#testado,#tendereco{
+  text-align: start;
+}
 
 div.table table td, textarea {
   border-color: black;
@@ -260,4 +303,7 @@ thead{
 .caption{
   font-size: 15pt;
   font-weight: 700;
+}
+.tr__img{
+  display: none;
 }
