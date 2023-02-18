@@ -235,7 +235,7 @@ function addMaterialToTable() {
     totalInput.innerHTML = `R$ ${sum}`;
   
 }
-const imageText = {
+const imageText = {//Chave:imgName valor= [img,legenda]
 
 }
 function updateImgPreview() {
@@ -255,37 +255,52 @@ function updateImgPreview() {
     img.classList.add('img');
     holder.classList.add('preview__img--visible');
     img.src = URL.createObjectURL(image);
-    img.alt = image.name;
     imgHolder.appendChild(img);
     holder.append(imgHolder);
+    const imgName =  image.name.slice(0, (image.name).lastIndexOf('.')) ;
+    img.alt = imgName;
+    img.title = imgName;
+    imgHolder.id= imgName;
     imgHolder.addEventListener('dblclick',(e)=>{
       e.target.remove();
     },true);
-    imgHolder.addEventListener('click',(event)=>popOutImg(event));
-    imageText[img.alt]='';
+    imgHolder.addEventListener('click',(event)=>{
+      popOutImg(event.target)
+    });
+    
+    imageText[imgName]=[img,''];//Guarda o elemento para apagá-lo dps
     }
     return `${images.length} imagens adicionadas`
   }
 }
-function popOutImg(e) {
-  const yPosition = e.y;
-  const imgRefer = e.target.id;//IMg para colocar no OBJ
+function popOutImg(e) {//Aparece 2 opções, Deletar ou adicionar texto
   const div = document.createElement('div');
-  const label = document.createElement('label');
+  const p = document.createElement('p');
   const input = document.createElement('input');
-  const name = 'iimage'+yPosition;
-  label.for = name;
-  input.name =name;
+  const sair = document.createElement('button');
+  const saveBtn = document.createElement('button');
+  const image = e.cloneNode();
+
+  saveBtn.classList.add('saveBtn');
+  saveBtn.textContent = 'salvar';
+  sair.textContent ='X';
+  input.placeholder = 'Legenda da Imagem';
   div.classList.add('popOut');
+  p.textContent='Escreva uma legenda para a imagem selecionada';
   
-  input.addEventListener('input',(e)=>{
-    //Fechar PopOut
+  sair.addEventListener('click',()=>{
     div.remove();
+  });
+  saveBtn.addEventListener('click',()=>{
+    imageText[image.alt][1]=input.value;
+    input.style.backgroundColor='#1eff3396';
+    saveBtn.textContent='Salvo';
+    input.style.color='green';
   })
+  div.append(sair,p,image,input,saveBtn);
 
-  
+  document.body.appendChild(div);
 
-  c(e);
 }
 function addImgToTable() {
   const tr = document.querySelector('.tr__img');
