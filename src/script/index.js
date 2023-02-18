@@ -69,8 +69,12 @@ function fixDate(date) {
     a.style.display='block';
     getElement('btn-holder').append(printBtn,resetBtn);
   }
-  ICHAMADO.type='number'
+  ICHAMADO.type='number';
   ICHAMADO.value=keep;
+  if(Object.keys(imageText).length>0){
+    addImgsTable();
+    getElement('imgTable').style.display='block'
+  }
   if(holder.children[0]!== IMATERIALNUMBER){
     addMaterialTable(holder.children.length);
     addMaterialToTable();
@@ -151,11 +155,18 @@ function resetTable(x) {
   TTABLETYPE[2].checked = false;
   ICHAMADO.type='number';
   addCount--;
+  getElement('imgTable').style.display='none';
+  let i = TIMGHOLDER.children.length;
+  while (TIMGHOLDER.children.length>0) {
+    const child = TIMGHOLDER.children[i-1];
+    child.remove();  
+    i--;
+  }
   
   const a = document.querySelectorAll('.material__td');
   a.forEach((e)=>{
     e.style.display='revert';
-  })    
+  });    
 }
 function createMaterialBtns(n){
   const inputs =[];
@@ -235,9 +246,6 @@ function addMaterialToTable() {
     totalInput.innerHTML = `R$ ${sum}`;
   
 }
-const imageText = {//Chave:imgName valor= [img,legenda]
-
-}
 function updateImgPreview() {
   const holder = document.querySelector('.preview__img');
   images = IIMAGES.files;
@@ -263,6 +271,8 @@ function updateImgPreview() {
     imgHolder.id= imgName;
     imgHolder.addEventListener('dblclick',(e)=>{
       e.target.remove();
+      c(delete imageText[a.alt]);
+
     },true);
     imgHolder.addEventListener('click',(event)=>{
       popOutImg(event.target)
@@ -302,9 +312,19 @@ function popOutImg(e) {//Aparece 2 opções, Deletar ou adicionar texto
   document.body.appendChild(div);
 
 }
-function addImgToTable() {
-  const tr = document.querySelector('.tr__img');
-  tr.style.display='revert';
+function addImgsTable() {
+  /* const tr = document.querySelector('.tr__img');
+  tr.style.display='revert'; */
+  for (const k in imageText) {
+    const element = imageText[k];
+    const p = document.createElement('p');
+    const div = document.createElement('div');
+    const img = element[0].cloneNode();
+    div.append(img,p);
+    p.textContent= element[1];
+    p.classList.add('legendImg');
+    TIMGHOLDER.append(div);
+  }
 }
 /*
   Variables
@@ -354,7 +374,8 @@ TCAUSA = getElement('tcausa'),
 TSERVICO = getElement('tservico'),
 TOBS = getElement('tobs'),
 TCLI = getElement('tcli'),
-TTEC = getElement('ttec');
+TTEC = getElement('ttec'),
+TIMGHOLDER = getElement('holder__img');
 
 const btn = getElement('btn');
 
@@ -364,6 +385,7 @@ const month = data.getMonth();
 const day = data.getDate();
 IIMAGES.addEventListener('change',updateImgPreview);
 const tableDefault=[];//Recebe array com [elemento:HTMLCOLLECTION,valor padrão:string]
+const imageText = {}//Chave:imgName valor= [img,legenda]
 
 const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,IDATA,TDATAIN,IDATAOUT,TDATAOUT,
   IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,

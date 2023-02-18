@@ -261,8 +261,45 @@ form{
     display: block;
   }
 }
-
 /*Table Style*/
+#imgTable{
+  display: none;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-top:none;
+  background-color: @cor-th-title;
+}
+div#holder__img {
+  display: flex;
+  width: 100%;
+  border: 1px solid;
+  flex-wrap: wrap;
+  padding: 3px;
+  border-top: none;
+  justify-content: space-between;
+  row-gap: 10px;
+  box-sizing: border-box;
+  margin-top: 0;
+  p{
+    width: 90%;
+  }
+  img{
+    max-width: 250px;
+    max-height: 400px;
+    border: 2px solid;
+    padding: 5px;
+  }
+  div{
+    padding: 5px;
+    display: flex;
+    width: 300px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 
 #tcliente,#tcidade,#testado,#tendereco{
   text-align: start;
@@ -274,6 +311,7 @@ div.table table td, textarea {
 
 .table{
   display: none;
+  width: 90vw;
   background-color: white;
 }
 .flex-holder__table{
@@ -291,7 +329,6 @@ table,td,tr,th{
 table{
   border-collapse: collapse;
   width: 90vw;
-  margin: 2px;
   td{
     font-size: @font-table;
     text-align: center;
