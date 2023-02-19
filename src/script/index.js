@@ -73,7 +73,8 @@ function fixDate(date) {
   ICHAMADO.value=keep;
   if(Object.keys(imageText).length>0){
     addImgsTable();
-    getElement('imgTable').style.display='block'
+    getElement('imgTable').style.display='block';
+    getElement('holder__img').style.display='flex';
   }
   if(holder.children[0]!== IMATERIALNUMBER){
     addMaterialTable(holder.children.length);
@@ -156,6 +157,7 @@ function resetTable(x) {
   ICHAMADO.type='number';
   addCount--;
   getElement('imgTable').style.display='none';
+  getElement('holder__img').style.display='none';
   let i = TIMGHOLDER.children.length;
   while (TIMGHOLDER.children.length>0) {
     const child = TIMGHOLDER.children[i-1];
