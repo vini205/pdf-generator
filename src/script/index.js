@@ -1,5 +1,5 @@
 console.log("Working");
-var addCount =0;
+var addCount =true;
 /*
   Functions
 */
@@ -39,11 +39,11 @@ function fixDate(date) {
   return `${dia}/${mes}/${ano}`;
 }
   function add() {
-    if (addCount!==0) {
+    if (addCount===false) {
       alert('Resete a tabela primeiro')
       return
     }
-    addCount++;
+    addCount=false;
     let keep = ICHAMADO.value;
     ICHAMADO.type='text';
     ICHAMADO.value=`CH${keep}23`;
@@ -76,12 +76,15 @@ function fixDate(date) {
     getElement('imgTable').style.display='block';
     getElement('holder__img').style.display='flex';
   }
+  let materialTd =document.querySelectorAll('.material__td');
   if(holder.children[0]!== IMATERIALNUMBER){
+    materialTd.forEach((e)=>{
+      e.style.display='revert';
+    })
     addMaterialTable(holder.children.length);
     addMaterialToTable();
   }else{
-    let a =document.querySelectorAll('.material__td');
-    a.forEach((e)=>{
+    materialTd.forEach((e)=>{
       e.style.display='none';
     })    
   }
@@ -155,7 +158,7 @@ function resetTable(x) {
   TTABLETYPE[1].checked = false;
   TTABLETYPE[2].checked = false;
   ICHAMADO.type='number';
-  addCount--;
+  addCount=true;
   getElement('imgTable').style.display='none';
   getElement('holder__img').style.display='none';
   let i = TIMGHOLDER.children.length;
@@ -165,35 +168,39 @@ function resetTable(x) {
     i--;
   }
   
-  const a = document.querySelectorAll('.material__td');
-  a.forEach((e)=>{
-    e.style.display='revert';
-  });    
+  const materialItens = document.querySelectorAll('#materiais');
+  const materialHolder = document.querySelectorAll('.material__td');
+  materialItens.forEach((e,n)=>{
+  if(n===1){
+    e.style.display='none';
+  }else{
+    e.remove();
+  }
+  })
+  materialHolder.forEach((e)=>{
+    e.style.display='none';
+  })
 }
 function createMaterialBtns(n){
   const inputs =[];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 4; i++) {
     inputs.push(document.createElement('input'))    
   }
   const div = document.createElement('div');
   div.id= 'div'+n;
   inputs[0].id= 'imqtd' + n;
-  inputs[1].id= 'imvalorTotal' +n;
-  inputs[2].id= 'imvalorUnit' +n;
-  inputs[3].id= 'imdescricao' +n;
-  inputs[4].id= 'imunidade' +n;
+  inputs[1].id= 'imvalorUnit' +n;
+  inputs[2].id= 'imdescricao' +n;
+  inputs[3].id= 'imunidade' +n;
   inputs[0].placeholder='Quantidade';
-  inputs[1].placeholder='Valor Total';
-  inputs[2].placeholder='Valor unitário';
-  inputs[3].placeholder='Descrição';
-  inputs[4].placeholder='Unidade';
+  inputs[1].placeholder='Valor unitário';
+  inputs[2].placeholder='Descrição';
+  inputs[3].placeholder='Unidade';
   inputs[0].type='number';
   inputs[1].type='number';
-  inputs[2].type='number';
-  
   const p = document.createElement('p');
   p.id='resetMaterialBtn'+n;
-  p.innerText='Tirar materiais';
+  p.innerText='Excluir material';
   p.classList.add('material__p');
   div.classList.add('material__div');
 
@@ -203,35 +210,45 @@ function createMaterialBtns(n){
     }
     div.remove();
   });
-  div.append(inputs[0],inputs[1],inputs[2],inputs[3],inputs[4],p);
+  div.append(inputs[0],inputs[1],inputs[2],inputs[3],p);
   return div
 }
 function addMaterialTable(n) {
   const materialTR = [document.querySelector('#materiais')];
+  for (let i = 0; i < materialTR.length; i++) {
+    const element = materialTR[i];
+    element.style.display='revert';
+  } 
   n = n-1;
   for (let i =0;i<n;i++){
+    c(n)
     materialTR.push(materialTR[i].cloneNode(true));
     materialTR[i].after(materialTR[i+1]);
   }
 }
 function addMaterialToTable() {
   const materiais = document.querySelectorAll('#materiais');
+  
   const totalInput =  getElement('tvalorTotal');
   let sum = 0;
   for (let i = 0; i < materiais.length; i++) {
     const element = materiais[i];//Acessing TR
     let tag = '0'+i;
-    const values = [document.getElementById('imdescricao'+tag),
-    document.getElementById('imqtd'+tag),document.getElementById('imunidade'+tag),
-    document.getElementById('imvalorUnit'+tag),
-    document.getElementById('imvalorTotal'+tag)];
-    values[4].value = Number(values[1].value) * Number(values[3].value);
-    sum += Number(values[4].value)
-    for (let td = 0; td < element.cells.length; td++) {
+    const values = [
+    document.getElementById('imdescricao'+tag),
+    document.getElementById('imqtd'+tag),
+    document.getElementById('imunidade'+tag),
+    document.getElementById('imvalorUnit'+tag)
+    ];
+    let valueTotal =Number(values[1].value) * Number(values[3].value);
+    sum += valueTotal;
+    for (let td = 0; td < (element.cells.length)-1; td++) {
       const e = element.cells[td];//Acessing TD
       let value = values[td].value;
       let m = values[td].id.slice(0,5);
-      c(m);
+      if(td+2===element.cells.length){
+        element.cells[4].innerHTML = valueTotal;
+      }
       if(values[td].type == 'number' && m !=='imqtd'){
         if(values[td].value===''){
           e.innerHTML = 'R$ 0';
@@ -315,8 +332,6 @@ function popOutImg(e) {//Aparece 2 opções, Deletar ou adicionar texto
 
 }
 function addImgsTable() {
-  /* const tr = document.querySelector('.tr__img');
-  tr.style.display='revert'; */
   for (const k in imageText) {
     const element = imageText[k];
     const p = document.createElement('p');

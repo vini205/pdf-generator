@@ -7,8 +7,6 @@
   <title>Gerar Relatório</title>
   <link rel="stylesheet" href="../style/style.less">
   <link rel="stylesheet" href="../style/print.less" media="print">
-  <link rel="stylesheet" href="../style/public/print.min.css" media="print">
-  <link rel="stylesheet" href="../style/public/style.min.css">
   <link rel="shortcut icon" href="../img/trs.ico" type="image/x-icon">
 </head>
 <body>
@@ -233,7 +231,9 @@
         <tr id="mat--fix">
           <td class="textarea__td" colspan="12"><textarea id="tservico" name="textTable" class="textTable" cols="30" rows="1"></textarea></td>
         </tr>
-        
+        <!-- 
+          Materiais
+         -->
           <tr class="material__td">
            <th colspan="12" class="group-title">Material requisitado</th>
          </tr>
@@ -245,7 +245,7 @@
             <th colspan="2">Valor Total</th>
           </tr>
           
-          <tr id="materiais" class="material__td">
+          <tr id="materiais">
             <td colspan="2"></td>
             <td colspan="2"></td>
             <td colspan="2"></td>

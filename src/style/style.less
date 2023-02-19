@@ -196,6 +196,10 @@ form{
   margin-bottom: @marginb;
   padding: 5px;
   background-color: @terciary;
+  transition: 400ms;
+  &:hover{
+    .transition(#0000008f,300ms,black)
+  }
 }
 .preview__img{
   display: flex;
@@ -254,12 +258,21 @@ form{
     background: white;
     width: 40px;
     border: 1px solid;
+    transition: 400ms;
   }
   .saveBtn{
     width: 25%;
     margin-top: 10px;
     display: block;
   }
+  button:hover{
+    .transition(@primary,300ms)
+  }
+}
+.transition(@color,@time,@fontcolor:white){
+  transition: @time;
+  background-color: @color;
+  color:@fontcolor;
 }
 /*Table Style*/
 #imgTable{
