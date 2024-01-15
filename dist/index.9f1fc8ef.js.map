@@ -1,0 +1,1 @@
+{"mappings":"AAAA,IAAI,iBAAiB,SAAS,aAAa,CAAC,oBAAoB,iBAAiB,SAAS,aAAa,CAAC","sources":["src/script/mainPage.js"],"sourcesContent":["let verRelatiorios = document.querySelector('#verRelatiorios'), criarRelatorio = document.querySelector('#criarRelatorio');\n\n"],"names":[],"version":3,"file":"index.9f1fc8ef.js.map","sourceRoot":"/__parcel_source_root/"}
