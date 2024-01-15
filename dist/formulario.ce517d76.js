@@ -191,11 +191,38 @@ function createMaterialBtns(n) {
     p.classList.add("material__p");
     div.classList.add("material__div");
     p.addEventListener("click", ()=>{
-        if (holder.children[1] === undefined) holder.append(IMATERIALNUMBER, pCorfim);
         div.remove();
     });
     div.append(inputs[0], inputs[1], inputs[2], inputs[3], p);
     return div;
+}
+function addMaterial(n) {
+    alert(1);
+    const inputs = []; // Criando inputs
+    for(let i = 0; i < 4; i++)inputs.push(document.createElement("input"));
+    const div = document.createElement("div");
+    div.id = "div" + n;
+    inputs[0].id = "imqtd" + n;
+    inputs[1].id = "imvalorUnit" + n;
+    inputs[2].id = "imdescricao" + n;
+    inputs[3].id = "imunidade" + n;
+    inputs[0].placeholder = "Quantidade";
+    inputs[1].placeholder = "Valor unit\xe1rio";
+    inputs[2].placeholder = "Descri\xe7\xe3o";
+    inputs[3].placeholder = "Unidade";
+    inputs[0].type = "number";
+    inputs[1].type = "number";
+    const p = document.createElement("p");
+    p.id = "resetMaterialBtn" + n;
+    p.innerText = "Excluir material";
+    p.classList.add("material__p");
+    div.classList.add("material__div");
+    p.addEventListener("click", ()=>{
+        div.remove();
+    });
+    n++;
+    div.append(inputs[0], inputs[1], inputs[2], inputs[3], p);
+    holder.append(div);
 }
 function addMaterialTable(n) {
     const materialTR = [
@@ -317,6 +344,8 @@ function addImgsTable() {
   Variables
 */ const holder = document.getElementById("div__material");
 const pCorfim = document.getElementById("materialConfirm");
+var n = 0;
+pCorfim.addEventListener("click", ()=>addMaterial(n));
 const ICHAMADO = getElement("ichamado"), INAMETEC = getElement("inametec"), ICLIENTE = getElement("icliente"), IDATA = getElement("idata"), IENDERECO = getElement("iendereco"), ICIDADE = getElement("icidade"), IESTADO = getElement("iestado"), ITIPO = document.getElementsByName("itipo"), ITIPOoUTRO = getElement("itipoOutro"), IMOTIVO = getElement("imotivo"), IHORAIN = getElement("iHoraIn"), IHORAOUT = getElement("iHoraOut"), IDATAOUT = getElement("idataOut"), IESPACO = getElement("iespaco"), IDEFEITO = getElement("idefeito"), ICAUSA = getElement("icausa"), ISERVICO = getElement("iservico"), IMATERIALNUMBER = getElement("imaterialNumber"), IOBS = getElement("iobs"), ICLIENTENAME = getElement("iclienteName"), IIMAGES = getElement("iimages");
 const TCHAMADO = getElement("tchamado"), TCLIENTE = getElement("tcliente"), TDATA = getElement("tdata"), TENDERECO = getElement("tendereco"), TCIDADE = getElement("tcidade"), TESTADO = getElement("testado"), TTABLETYPE = document.getElementsByName("iTableType"), TTIPOOUTRO = getElement("ttipoOutro"), TMOTIVO = getElement("tmotivo"), TDATAIN = getElement("tdataIn"), TDATAOUT = getElement("tdataOut"), ThoraIN = getElement("thoraIn"), THORAOUT = getElement("thoraOut"), THORATOTAL = getElement("thoraTotal"), TESPACO = getElement("tespaco"), TDEFEITO = getElement("tdefeito"), TCAUSA = getElement("tcausa"), TSERVICO = getElement("tservico"), TOBS = getElement("tobs"), TCLI = getElement("tcli"), TTEC = getElement("ttec"), TIMGHOLDER = getElement("holder__img");
 const btn = getElement("btn");
@@ -401,20 +430,5 @@ resetBtn.addEventListener("click", ()=>{
 });
 printBtn.innerText = "Baixar PDF ou Imprimir";
 resetBtn.innerText = "Resetar Tabela";
-function verifyMaterial() {
-    let n = Number(IMATERIALNUMBER.value);
-    let _i = 0;
-    if (n >= 1) {
-        holder.removeChild(IMATERIALNUMBER);
-        holder.removeChild(pCorfim);
-        let i = [];
-        while(n > _i){
-            let d = createMaterialBtns(`0${_i}`);
-            i.push(d);
-            _i++;
-        }
-        for (const input of i)holder.appendChild(input);
-    }
-}
 
 //# sourceMappingURL=formulario.ce517d76.js.map

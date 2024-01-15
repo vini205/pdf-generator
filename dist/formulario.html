@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerar Relatório</title>
   <link rel="stylesheet" href="/formulario.a11f92e7.css">
+  <link rel="stylesheet" href="/formulario.cf01fe4b.css">
   <link rel="stylesheet" href="/formulario.de3a13e9.css" media="print">
   <link rel="shortcut icon" href="/trs.ceaa6bf5.ico" type="image/x-icon">
 </head>
@@ -80,7 +81,7 @@
           <input type="text" name="itipoOutro" id="itipoOutro" placeholder="Digite aqui">
         </div>
       </fieldset>
-
+      
       <label for="imotivo">Motivo do chamado</label>
       <input autocomplete="on" name="imotivo" class="text" id="imotivo" list="motivos">
       <datalist id="motivos">
@@ -112,10 +113,9 @@
       <label for="iservico">Serviço executado</label>
       <textarea autocomplete="on" placeholder="Serviço executado" name="iservico" class="text" id="iservico" cols="30" rows="2"></textarea>
 
-      <label for="imaterialNumber">Quantos materiais foram usados?</label>
+      <label for="imaterialNumber">Materiais usados</label>
       <div class="materialNumberHolder" id="div__material">
-        <input type="number" class="material_number" name="imaterialNumber" id="imaterialNumber">
-        <p class="materialNumberConfirm" id="materialConfirm" onclick="verifyMaterial()">Confirmar</p>
+        <p class="materialNumberConfirm" id="materialConfirm">Adicionar Material</p>
       </div>
 
       <label for="iobs">Observação</label>
@@ -133,7 +133,95 @@
 
       </div>
   </div>
-  <div class="table">
+<div class="table">
+  <div class="head_info">
+    <div class="info"> Técnica Refrigeração e Serviços</div>
+    <div class="info">CNPJ: 49.005.789-0001/62</div>
+    <div class="info"> tecnicarefrigeracao22@gmail.com</div>
+  </div>
+  <div class="header">
+    <div class="ficha titulo"> Ficha de Atendimento</div>
+    <div id="chamado">  Nº CH </div>
+    <div id="cliente"> Clinte: </div>
+    <div id="data">Data: </div>
+    <div id="endereco">Endereço: </div>
+    <div id="Cidade"> Cidade: </div>
+    <div id="Estado">Estado: </div>
+  </div>
+  <div class="tipoAtendimento">
+    <div class="titulo tipo">  Tipo de atendimento  </div>
+    <div id="tipoAtendimento"></div>
+  </div>
+  <div class="motivoChamado">
+    <div class="titulo motivo">  Motivo de atendimento  </div>
+    <div id="motivoChamado"></div>
+  </div>
+  <div class="horario">
+    <div class="chegada">
+      <div class="titulo">Chegada</div>
+      <div class="titulo">Data</div>
+      <div class="titulo">Horiário</div>
+      <div id="dataChegada"></div>
+      <div id="horaChegada"></div>
+    </div>
+    <div class="saida">
+      <div class="titulo">Saída</div>
+      <div class="titulo"> Data</div>
+      <div class="titulo">Horário</div>
+      <div id="dataSaida"></div>
+      <div id="horaSaida"></div>
+    </div>
+    <div class="tempoTotal">
+      <div class="horarioTotal titulo">Horário Total</div>
+      <div id="tempoTotal"></div>
+    </div>
+    <div class="Deslocamento">
+      <div class="titulo">Deslocamento</div>
+      <div id="deslocamento"></div>
+    </div>
+  </div>
+  <div class="Servico">
+    <div class="titulo">Defeito Constatado</div>
+    <div id="defeito"></div>
+    <div class="titulo">Causa Provavel </div>
+    <div id="causa"></div>
+    <div class="titulo">Serviço Executado</div>
+    <div id="servicoExecutado"></div>
+  </div>
+  <div class="preventiva">
+    <div class="titulo">Manutenção preventiva</div>
+    <div id="manutencao"></div>
+  </div>
+    <div class="materiais">
+      <div class="titulo">Materiais </div>
+      <div class="titulo">Descrição</div>
+      <div class="titulo">Quantidade</div>
+      <div class="titulo">Unidade Métrica</div>
+      <div class="titulo">Valor Unitário</div>
+      <div class="titulo" id="valorTotal">Valor Total</div>
+      <div class="titulo">Total</div>
+      <div id="total"></div>
+    </div>
+    <div class="obs">
+      <div class="titulo">Observação</div>
+      <div id="observacao"></div>
+    </div>
+    <div class="Imagens">
+      <div class="titulo">Fotos</div>
+
+    </div>
+    <div class="atores">
+      <div class="titulo">
+        Técnico Responsável
+      </div>
+      <div class="titulo">
+        Cliente Responsável
+      </div>
+
+    </div>
+</div>
+
+  <div class="table" style="display: none">
     <table>
       <caption class="caption"> <div class="flex-holder__table"><img src="/trs-Logo.f18d0070.webp" class="logo__table" alt="TRS refrigeração"> <div>TRS Refrigeração</div></div></caption>
      
@@ -294,5 +382,6 @@
     <div id="holder__img"></div>
   </div>
   <script src="/formulario.ce517d76.js"></script>
+  <script src="/formulario.e8e97434.js"></script>
 <script src="/formulario.d898e0eb.js"></script></body>
 </html>

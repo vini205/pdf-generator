@@ -1,0 +1,54 @@
+.table{
+    box-sizing: border-box;
+    width: 100%;
+    border: black solid 2px ;
+    display: flex;
+    flex-direction: column;
+    .titulo{
+        font-style: italic;
+        font-weight: bold;
+        background-color: #c4c4c4;
+        border: solid black 2px;
+        padding: 5px;
+        text-align: center;
+    }
+    & div{
+        display: grid;
+    }
+    div[id]{
+    border: solid black 1px;
+    padding: 4px;
+
+    }
+}
+.head_info{
+    grid-template-columns: repeat(3,1fr);
+    .info{
+        text-align: center;
+    }
+}
+.header{
+    grid-template-columns: repeat(6, 1fr);
+    .ficha,#cliente,#endereco{
+        grid-column: 1/ 5;
+    }
+    #chamado,#data{
+        grid-column: 5 /7;
+    }
+}
+.horario{
+    grid-template-columns: repeat(4, 1fr) ;
+    .chegada, .saida{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        & :first-child{
+            grid-column: 1/3;
+        }
+    }
+}
+.materiais{
+    grid-template-columns: 3fr repeat(4, 1fr);
+    & :first-child{
+        grid-column: 1/6;
+    }
+}
