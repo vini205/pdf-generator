@@ -1,5 +1,23 @@
 @import "http://fonts.googleapis.com/css?family=Open+Sans&css";
 
+@keyframes ann {
+  0% {
+    opacity: .2;
+    width: 10%;
+    text-wrap: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    width: initial;
+  }
+}
+
 body {
   background-color: #fff;
   font-family: Open Sans, Arial, Helvetica, sans-serif;
@@ -127,6 +145,28 @@ form select {
   height: 30px;
 }
 
+fieldset {
+  text-align: center;
+  border: 2px solid #000;
+  padding: 5px;
+}
+
+fieldset button {
+  cursor: pointer;
+  text-align: center;
+  background-color: #f0e91d;
+  border: 1px solid;
+  margin-bottom: 20px;
+  padding: 5px;
+  transition: all .4s;
+}
+
+fieldset button:hover {
+  color: #000;
+  background-color: #4677ff8f;
+  transition: all .3s;
+}
+
 .tipo__form {
   margin-bottom: 20px;
   padding: 20px;
@@ -144,6 +184,29 @@ form select {
     flex-direction: column;
     gap: 20px;
   }
+}
+
+#btn {
+  cursor: pointer;
+  height: 90px;
+  background: #fff;
+  border: 1px solid;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 1.2em;
+  font-weight: 800;
+  transition: all .3s;
+}
+
+#btn:hover {
+  color: #fff;
+  background-color: #00c;
+  box-shadow: 0 1px 3px;
+}
+
+#btn:focus-visible {
+  color: #fff;
+  background-color: #000;
 }
 
 .printBtn, .resetBtn {
@@ -201,7 +264,7 @@ form select {
 
 .materialNumberHolder p:hover {
   color: #fff;
-  background-color: #00c;
+  background-color: #0003e0;
   box-shadow: 0 1px 3px;
 }
 
@@ -260,43 +323,65 @@ form select {
 }
 
 .popOut {
+  color: #fff;
   width: 70vw;
-  height: 70vh;
-  background: #fff;
-  border: 6px double;
+  background: #0003e0;
+  border: solid #000;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 10px;
+  transition: display 1s;
+  animation: 1s ann;
+  display: flex;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px 6px #959595;
+}
+
+.popOut p {
+  text-align: center;
+  width: 100%;
+  text-overflow: clip;
+  margin: 30px auto;
+  font-size: 1.5em;
+  font-weight: bolder;
+  overflow: hidden;
 }
 
 .popOut img {
-  height: 60%;
-  max-width: 100%;
+  height: 50%;
+  max-width: 60%;
   border: 1px solid;
   margin: 10px auto;
   display: block;
 }
 
 .popOut input {
-  width: 100%;
+  width: 43%;
   box-sizing: border-box;
-  padding: 5px;
+  text-align: center;
+  border: none;
+  border-bottom: 3px solid;
+  outline: none;
+  margin: 30px auto;
+  padding: 3px;
+  font-size: 1em;
 }
 
 .popOut button {
-  width: 40px;
+  width: 30%;
   background: #fff;
   border: 1px solid;
-  margin: auto;
+  margin: 5px auto;
   padding: 5px;
   transition: all .4s;
   display: block;
 }
 
 .popOut .saveBtn {
-  width: 25%;
+  width: 30%;
   margin-top: 10px;
   display: block;
 }
@@ -305,6 +390,11 @@ form select {
   color: #fff;
   background-color: #00b401;
   transition: all .3s;
+}
+
+.used {
+  opacity: .8;
+  background-color: gray;
 }
 
 #imgTable {

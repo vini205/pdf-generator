@@ -334,17 +334,20 @@ function popOutImg(e) {//Aparece 2 opções, Deletar ou adicionar texto
   const div = document.createElement('div');
   const p = document.createElement('p');
   const input = document.createElement('input');
-  const sair = document.createElement('button');
+  const sair = document.createElement('span');
   const saveBtn = document.createElement('button');
   const image = e.cloneNode();
-
+// <span class="material-symbols-outlined">
+//close
+//</span>
   saveBtn.classList.add('saveBtn');
   saveBtn.textContent = 'salvar';
-  sair.textContent ='X';
+  sair.textContent ='close';
   input.placeholder = 'Legenda da Imagem';
   div.classList.add('popOut');
+  sair.classList.add(['material-symbols-outlined'])
   p.textContent='Escreva uma legenda para a imagem selecionada';
-  
+  sair.style.cursor = 'pointer'
   sair.addEventListener('click',()=>{
     div.remove();
   });
@@ -426,9 +429,10 @@ TIMGHOLDER = getElement('holder__img');
 const btn = getElement('btn');
 
 const data = new Date();
-const year = data.getFullYear();
-const month = data.getMonth();
-const day = data.getDate();
+const year = data.getFullYear().toString();
+const month = (data.getMonth()+1).toString();
+const day = data.getDate().toString();
+
 IIMAGES.addEventListener('change',updateImgPreview);
 const tableDefault=[];//Recebe array com [elemento:HTMLCOLLECTION,valor padrão:string]
 const imageText = {}//Chave:imgName valor= [img,legenda]
@@ -438,17 +442,8 @@ const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,ID
   IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO,IESPACO,TESPACO,ICLIENTENAME,TCLI];
   
 putInInput(['SP'],[IESTADO]);
+putInInput(`${year}-${month.padStart(2,'0')}-${day.padStart(2,'0')}`,[getElement('idataChegada'),getElement('idataSaida')]);
 
-if(month>9 && day>9){
-  putInInput(`${year}-${month}-${day}`,[IDATA,IDATAOUT]);
-
-}else if(day>9){
-  putInInput(`${year}-0${month}-${day}`,[IDATA,IDATAOUT]);
-}else if(month>9){
-  putInInput(`${year}-${month}-0${day}`,[IDATA,IDATAOUT]);
-}else{
-  putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
-}
 
 /*
   Run script

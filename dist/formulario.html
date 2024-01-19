@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="/formulario.cf01fe4b.css">
   <link rel="stylesheet" href="/formulario.de3a13e9.css" media="print">
   <link rel="shortcut icon" href="/trs.ceaa6bf5.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+
 </head>
 <body>
   <div class="form">
@@ -106,13 +108,30 @@
         <textarea autocomplete="on" placeholder="Serviço executado" name="iservico" class="text" id="iservico" cols="30" rows="2"></textarea>
       </fieldset>
 
-      <fieldset id="ipreventivaForm">
-        <label for="1">Limpeza de Condensador</label>
+      <fieldset id="preventivaForm">
+        <label for="manutencao">Manutenção Preventiva</label>
+        <button type="button">Limpeza de Condensador</button>
+        <button type="button">Limpeza do Evaporador</button>
+        <button type="button">Verificação de Tensão/Corrente</button>
+        <button type="button" class="btn__prev--value">Verificação de Temperatura ___ °C</button><button>
+        </button><button type="button" class="btn__prev--value">Pressão de Alta  ___ bar</button>
+        <button type="button" class="btn__prev--value">Pressão de Baixa  ___ bar</button>
+        <button type="button" class="btn__prev--value">Carga de Fluído ___ Kg</button>
+        <textarea placeholder="Manutenção" name="imanutencao" class="text" id="imanutencao" cols="30" rows="2"></textarea>
+        <!-- <label for="1">Limpeza de Condensador</label>
         <input type="checkbox" name="1" id="1">
         <label for="2">Limpeza de evaporador</label>
         <input type="checkbox" name="2" id="2">
         <label for="3">Verificação de Tensão/Corrente</label>
         <input type="checkbox" name="3" id="3">
+        <label for="4">Verificação de temperatura <input type="number" value="0" name="graus" id="graus"> °C</label>
+        <input type="checkbox" name="4" id="4">
+        <label for="5">Pressão de Alta <input type="number" name="pressaoAlta" id="pressaoAlta"> bar </label>
+        <input type="checkbox" name="5" id="5">
+        <label for="6">Pressão de baixa <input type="number" name="pressaoBaixa" id="pressaoBaixa"> bar </label>
+        <input type="checkbox" name="6" id="6">
+        <label for="7">Carga de fluído <input type="number" name="fluido" id="fluido"> Kg </label>
+        <input type="checkbox" name="7" id="7"> -->
       </fieldset>
 
 
@@ -162,7 +181,7 @@
   </div>
   <div class="tipoAtendimento">
     <div class="titulo tipo">  Tipo de atendimento  </div>
-    <div id="tipoAtendimento"></div>
+    <div id="tipo"></div>
   </div>
   <div class="motivoChamado">
     <div class="titulo motivo">  Motivo de atendimento  </div>

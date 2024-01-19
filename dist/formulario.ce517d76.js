@@ -307,15 +307,22 @@ function popOutImg(e) {
     const div = document.createElement("div");
     const p = document.createElement("p");
     const input = document.createElement("input");
-    const sair = document.createElement("button");
+    const sair = document.createElement("span");
     const saveBtn = document.createElement("button");
     const image = e.cloneNode();
+    // <span class="material-symbols-outlined">
+    //close
+    //</span>
     saveBtn.classList.add("saveBtn");
     saveBtn.textContent = "salvar";
-    sair.textContent = "X";
+    sair.textContent = "close";
     input.placeholder = "Legenda da Imagem";
     div.classList.add("popOut");
+    sair.classList.add([
+        "material-symbols-outlined"
+    ]);
     p.textContent = "Escreva uma legenda para a imagem selecionada";
+    sair.style.cursor = "pointer";
     sair.addEventListener("click", ()=>{
         div.remove();
     });
@@ -350,9 +357,9 @@ const ICHAMADO = getElement("ichamado"), INAMETEC = getElement("inametec"), ICLI
 const TCHAMADO = getElement("tchamado"), TCLIENTE = getElement("tcliente"), TDATA = getElement("tdata"), TENDERECO = getElement("tendereco"), TCIDADE = getElement("tcidade"), TESTADO = getElement("testado"), TTABLETYPE = document.getElementsByName("iTableType"), TTIPOOUTRO = getElement("ttipoOutro"), TMOTIVO = getElement("tmotivo"), TDATAIN = getElement("tdataIn"), TDATAOUT = getElement("tdataOut"), ThoraIN = getElement("thoraIn"), THORAOUT = getElement("thoraOut"), THORATOTAL = getElement("thoraTotal"), TESPACO = getElement("tespaco"), TDEFEITO = getElement("tdefeito"), TCAUSA = getElement("tcausa"), TSERVICO = getElement("tservico"), TOBS = getElement("tobs"), TCLI = getElement("tcli"), TTEC = getElement("ttec"), TIMGHOLDER = getElement("holder__img");
 const btn = getElement("btn");
 const data = new Date();
-const year = data.getFullYear();
-const month = data.getMonth();
-const day = data.getDate();
+const year = data.getFullYear().toString();
+const month = (data.getMonth() + 1).toString();
+const day = data.getDate().toString();
 IIMAGES.addEventListener("change", updateImgPreview);
 const tableDefault = []; //Recebe array com [elemento:HTMLCOLLECTION,valor padrão:string]
 const imageText = {} //Chave:imgName valor= [img,legenda]
@@ -400,21 +407,9 @@ putInInput([
 ], [
     IESTADO
 ]);
-if (month > 9 && day > 9) putInInput(`${year}-${month}-${day}`, [
-    IDATA,
-    IDATAOUT
-]);
-else if (day > 9) putInInput(`${year}-0${month}-${day}`, [
-    IDATA,
-    IDATAOUT
-]);
-else if (month > 9) putInInput(`${year}-${month}-0${day}`, [
-    IDATA,
-    IDATAOUT
-]);
-else putInInput(`${year}-0${month}-0${day}`, [
-    IDATA,
-    IDATAOUT
+putInInput(`${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`, [
+    getElement("idataChegada"),
+    getElement("idataSaida")
 ]);
 /*
   Run script
