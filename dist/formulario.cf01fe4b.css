@@ -71,7 +71,7 @@
   grid-column: 1 / 6;
 }
 
-.off {
+body .off {
   display: none;
 }
 

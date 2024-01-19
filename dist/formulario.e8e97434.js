@@ -1,6 +1,8 @@
 let tipoManutencao = getElement("itipo");
+campoCorretiva();
 tipoManutencao.addEventListener("change", ()=>{
     if (tipoManutencao.value == "preventiva") campoPreventiva();
+    else campoCorretiva();
 });
 function fillHeader() {
     let form = getElement("form");
@@ -11,7 +13,8 @@ function fillHeader() {
             case "images":
                 value = "imagens";
                 continue;
-            case "tipo":
+            case "ipreventivaForm":
+                continue;
             default:
                 value = e.value == undefined ? "" : e.value;
                 break;
@@ -23,7 +26,7 @@ function fillHeader() {
         addToTable(value, tag);
     }
 }
-function addToTable(data, where) {
+/*FUNÇÔES DE SECUNDARIAS*/ function addToTable(data, where) {
     try {
         let element = getElement(where);
         console.log(element);
@@ -39,10 +42,10 @@ function getElement(id, className, tag) {
 }
 function campoPreventiva() {
     offToggle([
-        getElement(undefined, "corretivaTable"),
+        getElement(undefined, "corretivaTable")[0],
         getElement("corretivaForm")
     ], [
-        getElement(undefined, "preventivaTable"),
+        getElement(undefined, "preventivaTable")[0],
         getElement("preventivaForm")
     ]);
 }
@@ -52,9 +55,12 @@ function offToggle(off, on) {
 }
 function campoCorretiva() {
     offToggle([
-        getElement(undefined, "preventivaTable"),
+        getElement(undefined, "preventivaTable")[0],
         getElement("preventivaForm")
-    ][getElement(undefined, "corretivaTable"), getElement("corretivaForm")]);
+    ], [
+        getElement(undefined, "corretivaTable")[0],
+        getElement("corretivaForm")
+    ]);
 }
 
 //# sourceMappingURL=formulario.e8e97434.js.map

@@ -1,7 +1,10 @@
 let tipoManutencao = getElement('itipo');
+campoCorretiva()
 tipoManutencao.addEventListener('change',()=>{
   if (tipoManutencao.value=='preventiva') {
     campoPreventiva()
+  }else{
+    campoCorretiva()
   }
 })
 
@@ -15,8 +18,8 @@ function fillHeader(){
       value = 'imagens'
       continue;
       break;
-    case 'tipo':
-
+    case 'ipreventivaForm':
+      continue;
     default:
       value = e.value == undefined ? '' : e.value;
       break;
@@ -34,6 +37,8 @@ function fillHeader(){
 
 }
 
+
+/*FUNÇÔES DE SECUNDARIAS*/ 
 function addToTable(data, where) {
   try {
     let element = getElement(where)
@@ -54,12 +59,11 @@ function getElement(id=undefined,className=undefined,tag=undefined) {
 }
 function campoPreventiva(){
   offToggle(
-    [getElement(undefined,'corretivaTable'),
+    [getElement(undefined,'corretivaTable')[0],
     getElement('corretivaForm')],
-    [getElement(undefined,'preventivaTable'),
+    [getElement(undefined,'preventivaTable')[0],
     getElement('preventivaForm')])
 }
-
 function offToggle(off,on){
   for (const i of off) {
     i.classList.add('off')
@@ -70,9 +74,9 @@ function offToggle(off,on){
 }
 function campoCorretiva() {
   offToggle(
-    [getElement(undefined,'preventivaTable'),
-    getElement('preventivaForm')]
-    [getElement(undefined,'corretivaTable'),
+    [getElement(undefined,'preventivaTable')[0],
+    getElement('preventivaForm')],
+    [getElement(undefined,'corretivaTable')[0],
     getElement('corretivaForm')]
     )
  
