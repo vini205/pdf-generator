@@ -46,7 +46,7 @@ function fixDate(date) {
     addCount=false;
     let keep = ICHAMADO.value;
     ICHAMADO.type='text';
-    ICHAMADO.value=`CH${keep}23`;
+    ICHAMADO.value=`CH${ICHAMADO.value}23`;
     if (ITIPO[0].checked) {
       TTABLETYPE[1].checked= true;
     }else if(ITIPO[1].checked){
@@ -437,6 +437,8 @@ const topass = [INAMETEC,TTEC,ICHAMADO,TCHAMADO,ICLIENTE,TCLIENTE,IDATA,TDATA,ID
   IENDERECO,TENDERECO,ICIDADE,TCIDADE,IESTADO,TESTADO,IOBS,TOBS,ICAUSA,TCAUSA,IDEFEITO,TDEFEITO,ISERVICO,TSERVICO,
   IHORAIN,ThoraIN,IHORAOUT,THORAOUT,IMOTIVO,TMOTIVO,IESPACO,TESPACO,ICLIENTENAME,TCLI];
   
+putInInput(['SP'],[IESTADO]);
+
 if(month>9 && day>9){
   putInInput(`${year}-${month}-${day}`,[IDATA,IDATAOUT]);
 
@@ -447,7 +449,6 @@ if(month>9 && day>9){
 }else{
   putInInput(`${year}-0${month}-0${day}`,[IDATA,IDATAOUT]);
 }
-putInInput(['SP'],[IESTADO]);
 
 /*
   Run script

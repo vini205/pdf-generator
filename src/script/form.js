@@ -1,33 +1,79 @@
+let tipoManutencao = getElement('itipo');
+tipoManutencao.addEventListener('change',()=>{
+  if (tipoManutencao.value=='preventiva') {
+    campoPreventiva()
+  }
+})
 
-function getElement(id=undefined,className=undefined,tag=undefined) {
-    if(className===undefined && tag === undefined){
-      return document.getElementById(id);
-    }else if(tag===undefined){
-      return document.getElementsByClassName(className);
-    } else{
-      return document.querySelectorAll(tag);
+function fillHeader(){
+ let form = getElement('form');
+ for (let i = 0; i < 22 ; i++) {
+  const e = form.elements[i];
+  let value 
+  switch (e.id) {
+    case 'images':
+      value = 'imagens'
+      continue;
+      break;
+    case 'tipo':
+
+    default:
+      value = e.value == undefined ? '' : e.value;
+      break;
     }
+  let tag = (e.id)
+  tag = tag.slice(1)
+  console.log(tag)
+  if(tag == 'dataChegada'){//Adicionando a data no campo data
+    addToTable(value,'data')
+  }
+  addToTable(value,tag)
+  
+  
+ }
+
 }
 
-const ICHAMADO = getElement('ichamado'),
-INAMETEC = getElement('inametec'),
-ICLIENTE = getElement('icliente'),
-IDATA = getElement('idata'),
-IENDERECO = getElement('iendereco'),
-ICIDADE = getElement('icidade'),
-IESTADO = getElement('iestado'),
-ITIPO = document.getElementsByName('itipo'),
-ITIPOoUTRO = getElement('itipoOutro'),
-IMOTIVO = getElement('imotivo'),
-IHORAIN = getElement('iHoraIn'),
-IHORAOUT = getElement('iHoraOut'),
-IDATAOUT = getElement('idataOut'),
-IESPACO =  getElement('iespaco'),
-IDEFEITO = getElement('idefeito'),
-ICAUSA = getElement('icausa'),
-ISERVICO = getElement('iservico'),
-IMATERIALNUMBER = getElement('imaterialNumber'),
-IOBS = getElement('iobs'),
-ICLIENTENAME = getElement('iclienteName'),
-IIMAGES = getElement('iimages');
+function addToTable(data, where) {
+  try {
+    let element = getElement(where)
+    console.log(element)
+    element.innerText = data
+  } catch (error) {
+    console.log(' DATA: '+data +', WHERE '+ where+'\n'+error  )    
+  }
+}
+function getElement(id=undefined,className=undefined,tag=undefined) {
+  if(className===undefined && tag === undefined){
+    return document.getElementById(id);
+  }else if(tag===undefined){
+    return document.getElementsByClassName(className);
+  } else{
+    return document.querySelectorAll(tag);
+  }
+}
+function campoPreventiva(){
+  offToggle(
+    [getElement(undefined,'corretivaTable'),
+    getElement('corretivaForm')],
+    [getElement(undefined,'preventivaTable'),
+    getElement('preventivaForm')])
+}
 
+function offToggle(off,on){
+  for (const i of off) {
+    i.classList.add('off')
+  }
+  for (const i of on) {
+    i.classList.remove('off')
+  }
+}
+function campoCorretiva() {
+  offToggle(
+    [getElement(undefined,'preventivaTable'),
+    getElement('preventivaForm')]
+    [getElement(undefined,'corretivaTable'),
+    getElement('corretivaForm')]
+    )
+ 
+}

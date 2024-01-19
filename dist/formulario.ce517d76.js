@@ -38,7 +38,7 @@ function add() {
     addCount = false;
     let keep = ICHAMADO.value;
     ICHAMADO.type = "text";
-    ICHAMADO.value = `CH${keep}23`;
+    ICHAMADO.value = `CH${ICHAMADO.value}23`;
     if (ITIPO[0].checked) TTABLETYPE[1].checked = true;
     else if (ITIPO[1].checked) TTABLETYPE[0].checked = true;
     else if (ITIPOoUTRO.value != "") {
@@ -395,6 +395,11 @@ const topass = [
     ICLIENTENAME,
     TCLI
 ];
+putInInput([
+    "SP"
+], [
+    IESTADO
+]);
 if (month > 9 && day > 9) putInInput(`${year}-${month}-${day}`, [
     IDATA,
     IDATAOUT
@@ -410,11 +415,6 @@ else if (month > 9) putInInput(`${year}-${month}-0${day}`, [
 else putInInput(`${year}-0${month}-0${day}`, [
     IDATA,
     IDATAOUT
-]);
-putInInput([
-    "SP"
-], [
-    IESTADO
 ]);
 /*
   Run script

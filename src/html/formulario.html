@@ -15,7 +15,7 @@
     <img class="logo__form" src="../img/trs-Logo.webp" alt="TRS refrigeração">
     <h1>Coloque aqui os dados do relatório</h1>
 
-    <form autocomplete='on'>
+    <form id="form" autocomplete='on'>
       <label for="inametec">Nome do Técnico</label>
       <input autocomplete="name" type="text" placeholder="Nome do Técnico"  name="inametec" id="inametec">
 
@@ -28,8 +28,8 @@
       <label for="icliente">Cliente</label>
       <input autocomplete="additional-name" type="text" name="icliente" id="icliente" placeholder="Cliente">
 
-       <label for="idata">Data</label>
-       <input type="date" name="idata" id="idata">
+       <label for="idataChegada">Data</label>
+       <input type="date" name="idataChegada" id="idataChegada">
 
        <label for="iendereco">Endereço</label>
        <input autocomplete="street-address" placeholder="Digite aqui o endereço" type="text" name="iendereco" id="iendereco">
@@ -37,7 +37,7 @@
        <label for="icidade">Cidade</label>
        <input autocomplete="address-level1" placeholder="Nome da Cidade" type="text" name="icidade" id="icidade">
 
-       <label for="iestado">Estados:</label>
+       <label for="iestado">Estado:</label>
       <select name="iestado" id="iestado">
         <option value="" selected>-- Escolha</option>       
         <option value="AC">Acre</option>
@@ -66,22 +66,13 @@
         <option value="SE">Sergipe</option>
         <option value="TO">Tocantins</option>
       </select>
-      <fieldset class="tipo__form">
+     
         <label for="itipo">Tipo de Atendimento</label>
-        <div class="tipo__div">
-          <p>Corretiva</p> 
-          <input type="radio" name="itipo" id="itipo"> 
-        </div>
-        <div class="tipo__div">
-          <p>Preventiva</p>
-          <input type="radio" name="itipo" id="itipo">
-        </div>
-        <div class="tipo__div">
-          <p>Outros:</p>
-          <input type="text" name="itipoOutro" id="itipoOutro" placeholder="Digite aqui">
-        </div>
-      </fieldset>
-      
+        <select name="itipo" id="itipo">
+          <option value="corretiva">Corretiva</option>
+          <option value="preventiva">Preventiva</option>
+        </select>
+
       <label for="imotivo">Motivo do chamado</label>
       <input autocomplete="on" name="imotivo" class="text" id="imotivo" list="motivos">
       <datalist id="motivos">
@@ -92,26 +83,34 @@
         <option value="Equipamento não liga">Equipamento não liga</option>
       </datalist>
 
-      <label for="ihoraIn">Horario de Chegada</label>
-      <input type="time" name="ihoraIn" id="iHoraIn">
+      <label for="ihoraChegada">Horario de Chegada</label>
+      <input type="time"  name="ihoraChegada" id="ihoraChegada">
 
-      <label for="ihoraOut">Horario de Saída</label>
-      <input type="time" name="ihoraOut" id="iHoraOut">
+      <label for="ihoraSaida">Horario de Saída</label>
+      <input type="time" name="ihoraSaida" id="ihoraSaida">
 
-      <label for="idataOut">Data da saída</label>
-      <input type="date" name="idataOut" id="idataOut">
+      <label for="idataSaida">Data da saída</label>
+      <input type="date" name="idataSaida" id="idataSaida">
 
-      <label for="iespaco">Deslocamento Total</label>
-      <input type="number" placeholder="Digite aqui o total de Km rodados" name="iespaco" id="iespaco">
+      <label for="ideslocamento">Deslocamento Total</label>
+      <input type="number" placeholder="Digite aqui o total de Km rodados" name="ideslocamento" id="ideslocamento">
 
-      <label for="idefeito">Defeito Constatado</label>
-      <textarea placeholder="Defeito" autocomplete="on" name="idefeito" class="text" id="idefeito" cols="30" rows="2"></textarea>
+      <fieldset id="corretivaForm">
+        <label for="idefeito">Defeito Constatado</label>
+        <textarea placeholder="Defeito" autocomplete="on" name="idefeito" class="text" id="idefeito" cols="30" rows="2"></textarea>
+  
+        <label for="icausa">Causa</label>
+        <textarea placeholder="Causa" autocomplete="on" name="icausa" class="text" id="icausa" cols="30" rows="2"></textarea>
+  
+        <label for="iservico">Serviço executado</label>
+        <textarea autocomplete="on" placeholder="Serviço executado" name="iservico" class="text" id="iservico" cols="30" rows="2"></textarea>
+      </fieldset>
 
-      <label for="icausa">Causa</label>
-      <textarea placeholder="Causa" autocomplete="on" name="icausa" class="text" id="icausa" cols="30" rows="2"></textarea>
+      <fieldset id='preventivaForm'>
 
-      <label for="iservico">Serviço executado</label>
-      <textarea autocomplete="on" placeholder="Serviço executado" name="iservico" class="text" id="iservico" cols="30" rows="2"></textarea>
+      </fieldset>
+
+
 
       <label for="imaterialNumber">Materiais usados</label>
       <div class="materialNumberHolder" id="div__material">
@@ -133,30 +132,38 @@
 
       </div>
   </div>
+<!-- TABLE-->
+
 <div class="table">
-  <div class="head_info">
+  <div  class="head_info">
     <div class="info"> Técnica Refrigeração e Serviços</div>
     <div class="info">CNPJ: 49.005.789-0001/62</div>
     <div class="info"> tecnicarefrigeracao22@gmail.com</div>
   </div>
-  <div class="header">
+  <div  class="header">
     <div class="ficha titulo"> Ficha de Atendimento</div>
-    <div id="chamado" id="chamdo">  Nº CH </div>
-    <div id="cliente"> Clinte: </div>
-    <div id="data">Data: </div>
-    <div id="endereco">Endereço: </div>
-    <div id="Cidade"> Cidade: </div>
-    <div id="Estado">Estado: </div>
+    <div class="headerinfo">Cliente :</div>
+    <div id="cliente">  </div>
+    <div class="headerinfo">Endereço</div>
+    <div id="endereco"> </div>
+    <div class="headerinfo">Data: </div>
+    <div id="data"> </div>
+    <div class="headerinfo"> Cidade: </div>
+    <div id="cidade">  </div>
+    <div class="headerinfo">Nº OS</div>
+    <div id="chamado">   </div>
+    <div class="headerinfo">Estado</div>
+    <div id="estado"> </div>
   </div>
-  <div class="tipoAtendimento">
+  <div  class="tipoAtendimento">
     <div class="titulo tipo">  Tipo de atendimento  </div>
     <div id="tipoAtendimento"></div>
   </div>
-  <div class="motivoChamado">
+  <div  class="motivoChamado">
     <div class="titulo motivo">  Motivo de atendimento  </div>
-    <div id="motivoChamado"></div>
+    <div id="motivo"></div>
   </div>
-  <div class="horario">
+  <div  class="horario">
     <div class="chegada">
       <div class="titulo">Chegada</div>
       <div class="titulo">Data</div>
@@ -180,19 +187,19 @@
       <div id="deslocamento"></div>
     </div>
   </div>
-  <div class="Servico">
+  <div  class="corretivaTable">
     <div class="titulo">Defeito Constatado</div>
     <div id="defeito"></div>
     <div class="titulo">Causa Provavel </div>
     <div id="causa"></div>
     <div class="titulo">Serviço Executado</div>
-    <div id="servicoExecutado"></div>
+    <div id="servico"></div>
   </div>
-  <div class="preventiva">
+  <div  class="preventivaTable">
     <div class="titulo">Manutenção preventiva</div>
     <div id="manutencao"></div>
   </div>
-    <div class="materiais">
+    <div  class="materiais">
       <div class="titulo">Materiais </div>
       <div class="titulo">Descrição</div>
       <div class="titulo">Quantidade</div>
@@ -202,21 +209,23 @@
       <div class="titulo">Total</div>
       <div id="total"></div>
     </div>
-    <div class="obs">
+    <div  class="obs">
       <div class="titulo">Observação</div>
-      <div id="observacao"></div>
+      <div id="obs"></div>
     </div>
-    <div class="Imagens">
+    <div  class="Imagens">
       <div class="titulo">Fotos</div>
-
+      <div id="imagesideslocamento"></div>
     </div>
-    <div class="atores">
+    <div  class="atores">
       <div class="titulo">
         Técnico Responsável
       </div>
+      <div id="nametec"></div>
       <div class="titulo">
         Cliente Responsável
       </div>
+      <div id="clienteName"></div>
 
     </div>
 </div>
