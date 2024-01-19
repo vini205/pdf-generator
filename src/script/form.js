@@ -1,5 +1,5 @@
 let tipoManutencao = getElement('itipo');
-campoPreventiva()
+campoCorretiva()
 tipoManutencao.addEventListener('change',()=>{
   if (tipoManutencao.value=='preventiva') {
     campoPreventiva()
