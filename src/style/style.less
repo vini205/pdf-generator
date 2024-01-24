@@ -11,20 +11,13 @@
 @marginb:20px;
 @keyframes ann{
   0%{
-    opacity: 0.2;
+    opacity: 0;
     //top: 0;
-    width: 10%;
-    overflow: hidden;
-    text-wrap: nowrap;
-    text-overflow: clip;
 
   }
-  50%{
-    opacity: 1;
-    
-  }
+ 
   100%{
-    width: initial;
+    opacity: 1;
   }
 }
 
@@ -203,9 +196,9 @@ fieldset{
   }
   
 }
-.material__div{
-  border: 1px solid black;
+.materiais div, .material__div {
   padding: 5px;
+  border: 1px solid black;
 }
 .material__p{
   display: block;
@@ -213,7 +206,7 @@ fieldset{
 }
 .materialNumberHolder{
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 30px;
   align-items: center;
@@ -284,7 +277,7 @@ fieldset{
   }
 }
 .popOut{
-  transition: display 1s;
+  transition: all 1s;
   border: black  solid;
   position: fixed;
   padding: 10px;
@@ -319,7 +312,7 @@ fieldset{
     margin-top: 10px;
     border: 1px solid;
     margin-bottom: 10px;
-    max-width: 60%;
+    width: 30%;
   }
   input{
     width: 43%; 
@@ -347,6 +340,11 @@ fieldset{
     margin-top: 10px;
     display: block;
   }
+  .deleteImgBtn{
+    width: 30%;
+    margin-top: 10px;
+    display: block;
+  }
   button:hover{
     .transition(@primary,300ms)
   }
@@ -361,14 +359,34 @@ fieldset{
   color:@fontcolor;
 }
 /*Table Style*/
-#imgTable{
-  display: none;
+
+#imagens{
+  display: flex;
   width: 100%;
   text-align: center;
   box-sizing: border-box;
   border: 1px solid;
   border-top:none;
-  background-color: @cor-th-title;
+  justify-content: space-between;
+  background-color: white;
+    .img__table{
+    max-width: 250px;
+    max-height: 400px;
+    padding: 5px;
+  }
+  .p__table{
+    width: 90%;
+    text-align: center;
+  }
+  div{
+    border: 2px solid;
+    padding: 5px;
+    display: flex;
+    width: 300px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 div#holder__img {
   display: none;
@@ -381,15 +399,7 @@ div#holder__img {
   row-gap: 10px;
   box-sizing: border-box;
   margin-top: 0;
-  p{
-    width: 90%;
-    text-align: center;
-  }
-  img{
-    max-width: 250px;
-    max-height: 400px;
-    padding: 5px;
-  }
+ 
   div{
     border: 2px solid;
     padding: 5px;

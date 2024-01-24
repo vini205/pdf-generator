@@ -118,20 +118,6 @@
         <button type="button" class="btn__prev--value">Pressão de Baixa  ___ bar</button>
         <button type="button" class="btn__prev--value">Carga de Fluído ___ Kg</button>
         <textarea placeholder="Manutenção" name="imanutencao" class="text" id="imanutencao" cols="30" rows="2"></textarea>
-        <!-- <label for="1">Limpeza de Condensador</label>
-        <input type="checkbox" name="1" id="1">
-        <label for="2">Limpeza de evaporador</label>
-        <input type="checkbox" name="2" id="2">
-        <label for="3">Verificação de Tensão/Corrente</label>
-        <input type="checkbox" name="3" id="3">
-        <label for="4">Verificação de temperatura <input type="number" value="0" name="graus" id="graus"> °C</label>
-        <input type="checkbox" name="4" id="4">
-        <label for="5">Pressão de Alta <input type="number" name="pressaoAlta" id="pressaoAlta"> bar </label>
-        <input type="checkbox" name="5" id="5">
-        <label for="6">Pressão de baixa <input type="number" name="pressaoBaixa" id="pressaoBaixa"> bar </label>
-        <input type="checkbox" name="6" id="6">
-        <label for="7">Carga de fluído <input type="number" name="fluido" id="fluido"> Kg </label>
-        <input type="checkbox" name="7" id="7"> -->
       </fieldset>
 
 
@@ -223,23 +209,24 @@
     <div class="titulo">Manutenção preventiva</div>
     <div id="manutencao"></div>
   </div>
-    <div  class="materiais">
+    <div  class="materiais off">
       <div class="titulo">Materiais </div>
       <div class="titulo">Descrição</div>
       <div class="titulo">Quantidade</div>
       <div class="titulo">Unidade Métrica</div>
       <div class="titulo">Valor Unitário</div>
       <div class="titulo" id="valorTotal">Valor Total</div>
-      <div class="titulo">Total</div>
+   
+      <div class="titulo" id="materialTotal">Total</div>
       <div id="total"></div>
     </div>
     <div  class="obs">
       <div class="titulo">Observação</div>
       <div id="obs"></div>
     </div>
-    <div  class="Imagens">
+    <div  class="imagens off">
       <div class="titulo">Fotos</div>
-      <div id="imagesideslocamento"></div>
+      <div id="imagens"></div>
     </div>
     <div  class="atores">
       <div class="titulo">
@@ -414,7 +401,7 @@
     <div id="imgTable">Fotos</div>
     <div id="holder__img"></div>
   </div>
-  <script src="../script/index.js"></script>
+  <!--<script src="../script/index.js"></script>-->
   <script src="../script/form.js"></script>
 </body>
 </html>

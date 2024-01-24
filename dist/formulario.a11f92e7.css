@@ -2,19 +2,11 @@
 
 @keyframes ann {
   0% {
-    opacity: .2;
-    width: 10%;
-    text-wrap: nowrap;
-    text-overflow: clip;
-    overflow: hidden;
-  }
-
-  50% {
-    opacity: 1;
+    opacity: 0;
   }
 
   100% {
-    width: initial;
+    opacity: 1;
   }
 }
 
@@ -223,7 +215,7 @@ fieldset button:hover {
   background-color: #000;
 }
 
-.material__div {
+.materiais div, .material__div {
   border: 1px solid #000;
   padding: 5px;
 }
@@ -234,7 +226,7 @@ fieldset button:hover {
 }
 
 .materialNumberHolder {
-  flex-flow: row-reverse wrap;
+  flex-flow: wrap;
   justify-content: center;
   align-items: center;
   gap: 30px;
@@ -330,7 +322,7 @@ fieldset button:hover {
   flex-direction: column;
   align-items: flex-start;
   padding: 10px;
-  transition: display 1s;
+  transition: all 1s;
   animation: 1s ann;
   display: flex;
   position: fixed;
@@ -352,7 +344,7 @@ fieldset button:hover {
 
 .popOut img {
   height: 50%;
-  max-width: 60%;
+  width: 30%;
   border: 1px solid;
   margin: 10px auto;
   display: block;
@@ -380,7 +372,7 @@ fieldset button:hover {
   display: block;
 }
 
-.popOut .saveBtn {
+.popOut .saveBtn, .popOut .deleteImgBtn {
   width: 30%;
   margin-top: 10px;
   display: block;
@@ -397,14 +389,36 @@ fieldset button:hover {
   background-color: gray;
 }
 
-#imgTable {
+#imagens {
   width: 100%;
   text-align: center;
   box-sizing: border-box;
-  background-color: #c4c4c4;
+  background-color: #fff;
   border: 1px solid;
   border-top: none;
-  display: none;
+  justify-content: space-between;
+  display: flex;
+}
+
+#imagens .img__table {
+  max-width: 250px;
+  max-height: 400px;
+  padding: 5px;
+}
+
+#imagens .p__table {
+  width: 90%;
+  text-align: center;
+}
+
+#imagens div {
+  width: 300px;
+  border: 2px solid;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  display: flex;
 }
 
 div#holder__img {
@@ -418,17 +432,6 @@ div#holder__img {
   margin-top: 0;
   padding: 3px;
   display: none;
-}
-
-div#holder__img p {
-  width: 90%;
-  text-align: center;
-}
-
-div#holder__img img {
-  max-width: 250px;
-  max-height: 400px;
-  padding: 5px;
 }
 
 div#holder__img div {
