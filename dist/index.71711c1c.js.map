@@ -1,0 +1,1 @@
+{"mappings":"AAAA,IAAIA,eAAiBC,SAASC,cAAc,mBAAoBC,eAAiBF,SAASC,cAAc","sources":["src/script/mainPage.js"],"sourcesContent":["let verRelatiorios = document.querySelector('#verRelatiorios'), criarRelatorio = document.querySelector('#criarRelatorio');\n\n"],"names":["verRelatiorios","document","querySelector","criarRelatorio"],"version":3,"file":"index.71711c1c.js.map"}

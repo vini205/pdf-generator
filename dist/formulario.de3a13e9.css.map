@@ -1,1 +1,0 @@
-{"mappings":"AAAA;;;;;;;;;AAQA","sources":["src/style/print.less"],"sourcesContent":["div.table{\n  display: flex;\n  padding: 20px;\n  font-size: 17px;\n  margin: auto;\n  height: 95vh;\n  box-sizing: border-box;\n}\ndiv.form{\n  display: none;\n}"],"names":[],"version":3,"file":"formulario.de3a13e9.css.map","sourceRoot":"/__parcel_source_root/"}
