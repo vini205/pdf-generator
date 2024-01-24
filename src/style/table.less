@@ -4,7 +4,7 @@
     border: black solid 2px ;
     display: flex;
     flex-direction: column;
-   
+    height: 100%;
     .titulo{
         font-style: italic;
         font-weight: bold;
@@ -17,9 +17,9 @@
         display: grid;
     }
     div[id]{
-    border: solid black 1px;
-    padding: 4px;
-        
+        border: solid black 1px;
+        padding: 4px;
+        text-align: center;
     }
 }
 .head_info{
@@ -62,3 +62,34 @@
 body .off{
     display: none;
 }
+
+#imagens{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid;
+    border-top:none;
+    justify-content: space-between;
+    background-color: white;
+      .img__table{
+      max-width: 250px;
+      max-height: 400px;
+      padding: 5px;
+    }
+    .p__table{
+      width: 90%;
+      text-align: center;
+    }
+    div{
+      border: 2px solid;
+      padding: 5px;
+      display: flex;
+      width: 300px;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  

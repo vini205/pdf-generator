@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerar Relatório</title>
-  <link rel="stylesheet" href="/formulario.a11f92e7.css">
-  <link rel="stylesheet" href="/formulario.cf01fe4b.css">
-  <link rel="stylesheet" href="/formulario.de3a13e9.css" media="print">
+  <link rel="stylesheet" href="/formulario.a11f92e7.css" media="print">
+  <link rel="stylesheet" href="/formulario.cf01fe4b.css" media="print">
+  <link rel="stylesheet" href="/formulario.de3a13e9.css">
   <link rel="shortcut icon" href="/trs.ceaa6bf5.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
 
@@ -152,7 +152,7 @@
   </div>
   <div class="header">
     <div class="ficha titulo"> Ficha de Atendimento</div>
-    <div class="headerinfo">Cliente :</div>
+    <div class="headerinfo">Cliente:</div>
     <div id="cliente">  </div>
     <div class="headerinfo">Endereço</div>
     <div id="endereco"> </div>
@@ -240,168 +240,7 @@
 
     </div>
 </div>
-
-  <div class="table" style="display: none">
-    <table>
-      <caption class="caption"> <div class="flex-holder__table"><img src="/trs-Logo.f18d0070.webp" class="logo__table" alt="TRS refrigeração"> <div>TRS Refrigeração</div></div></caption>
-     
-        <!-- Dados Iniciais -->
-        <tr>
-          <td colspan="10">
-            <div class="div--head">
-              <div>
-                Técnica Refrigeração e Serviços
-              </div>
-              <div>
-                CNPJ: 49.005.789-0001/62
-              </div>
-              <div>
-                tecnicarefrigeracao22@gmail.com
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr class="table__header--info">
-          <th colspan="8">Ficha de Atedimento</th>
-          <td colspan="4" id="tchamado">
-            Nº OS
-          </td>
-        </tr>
-        <tr class="table__header--info">
-          <td colspan="8" id="tcliente">
-            <strong>Cliente</strong>
-          </td>
-          <td colspan="4" id="tdata">
-            Data
-          </td>
-        </tr>
-        <tr class="table__header--info">
-          <td colspan="3" id="tendereco">Endereço</td>
-          <td colspan="3" id="tcidade">Cidade</td>
-          <td colspan="4" id="testado">Estado</td>
-        </tr>
-      
-      
-        <tr>
-          <th colspan="10" class="group-title">Tipo de Atendimento</th>
-        </tr>
-        <tr>
-          <td colspan="3">Preventiva <input type="checkbox" name="iTableType" id="iTableType"></td>
-          <td colspan="3">Corretiva <input type="checkbox" name="iTableType" id="iTableType"></td>
-          <td colspan="4">Outro <input type="checkbox" name="iTableType" id="iTableType">: <span id="ttipoOutro"></span></td>
-        </tr>
-        <tr>
-          <th colspan="12" class="group-title">Motivo do Chamado</th>
-        </tr>
-        <tr>
-          <td id="tmotivo" colspan="12"></td>
-        </tr>
-        <!-- Horários -->
-        <tr>
-          <th colspan="2">Chegada ao cliente</th>
-          <th colspan="2">Saida do Cliente</th>
-          <th rowspan="2"> Horário Total</th>
-          <th colspan="4" rowspan="3">Deslocamento Total</th>
-          <td rowspan="3" id="tespaco" colspan="2">Km</td>
-        </tr>
-        <tr>
-          <th colspan="1">Data</th>
-          <th colspan="1">Horário</th>
-          <th colspan="1">Data</th>
-          <th colspan="1">Horário</th>
-        </tr>
-        <tr>
-          <td id="tdataIn">/2023</td>
-          <td id="thoraIn"> : </td>
-          <td id="tdataOut">/2023</td>
-          <td id="thoraOut"> : </td>
-          <td id="thoraTotal"> : </td>
-        </tr>
-
-        <!-- Descrição -->
-        <tr>
-          <th colspan="12" class="group-title group-title--area">Defeito Constatado</th>
-        </tr>
-        <tr>
-          <td class="textarea__td" colspan="12"><textarea id="tdefeito" name="textTable" class="textTable" cols="30" rows="1"></textarea></td>
-        </tr>
-
-        <tr>
-          <th colspan="12" class="group-title group-title--area">Causa Provável</th>
-        </tr>
-        <tr>
-          <td class="textarea__td" colspan="12"><textarea id="tcausa" name="textTable" class="textTable" cols="30" rows="1"></textarea></td>
-        </tr>
-
-        <tr>
-          <th colspan="12" class="group-title group-title--area">Serviço executado</th>
-        </tr>
-        <tr id="mat--fix">
-          <td class="textarea__td" colspan="12"><textarea id="tservico" name="textTable" class="textTable" cols="30" rows="1"></textarea></td>
-        </tr>
-        <!-- 
-          Materiais
-         -->
-          <tr class="material__td">
-           <th colspan="12" class="group-title">Material requisitado</th>
-         </tr>
-          <tr class="material__td">
-            <th colspan="2">Descrição</th>
-            <th colspan="2">Quantidade</th>
-            <th colspan="2"> Unidade</th>
-            <th colspan="2">Valor Unitário</th>
-            <th colspan="2">Valor Total</th>
-          </tr>
-          
-          <tr id="materiais">
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-            <td colspan="2"></td>
-          </tr>
-          <tr class="material__td">
-            <td colspan="7"></td>
-            <th>Total</th>
-            <td colspan="2" id="tvalorTotal">R$ 100</td>
-          </tr>
-        
-        <tr>
-          <th colspan="12" class="group-title group-title--area">Observação</th>
-        </tr>
-        <tr>
-          <td class="textarea__td" colspan="12"><textarea name="textTable" id="tobs" class="textTable" cols="30" rows="1"></textarea></td>
-        </tr>
-
-        <!--
-          Images
-        -->
-        
-        <tr class="tr__img">
-          <td colspan="12">
-            
-          </td>
-        </tr>
-        
-        <!-- Assinaturas -->
-        <tr class="assinatura__table">
-          <th colspan="4">Técnico responsável</th>
-          <th colspan="6">Cliente Responsável (Estou ciente da avaliação acima)</th>
-        </tr>
-        <tr>
-          <td colspan="4">Visto</td>
-          <td colspan="6">Visto</td>
-        </tr>
-        <tr>
-          <td id="ttec" colspan="4">Nome do técnico</td>
-          <td id="tcli" colspan="6">Nome do Cliente</td>
-        </tr>
-     
-    </table>
-    <div id="imgTable">Fotos</div>
-    <div id="holder__img"></div>
-  </div>
-  <!--<script src="../script/index.js"></script>-->
+<script src="/formulario.ce517d76.js"></script>
   <script src="/formulario.e8e97434.js"></script>
 <script src="/formulario.d898e0eb.js"></script></body>
 </html>

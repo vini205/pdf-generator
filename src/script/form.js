@@ -32,6 +32,7 @@ btn.addEventListener('click',fillTable);
 /* ---Funções Principais--- 
  Funções acionadas pelo usuário
 */ 
+
 function addMaterial() {
   // Adiciona o campo de material no formulário
   let quantidade = document.createElement('input')
@@ -74,7 +75,6 @@ function addMaterial() {
   div.append(quantidade,valorUniatario,descricao,unidade,p);
   materialHolder.append(div)
 }
-
 function fillTable(){
   //Primeiro apaga os conteudos
   resetTable()
@@ -99,7 +99,8 @@ function fillTable(){
   }
   addToTable(value,tag)
 }
-
+let totalTime = subTime(getElement('ihoraChegada').value,getElement('ihoraSaida').value)
+addToTable(totalTime,'tempoTotal')
 addMaterials()
 
 addImages()
@@ -111,7 +112,6 @@ addImages()
  getElement('btn-holder').append(printBtn);
  
 }
-
 function manutencaoPreventiva(){
   //Adiciona função nos botões para adicionar no textarea
   let p = document.getElementById('preventivaForm').children
@@ -191,6 +191,20 @@ function updateImages() {
 }
 
 /*FUNÇÔES DE Auxiliares */ 
+
+function subTime(time01,time02) {
+  console.log(time01,time02)
+  let t1 = Number(time01.slice(0,2)),
+  m2 = Number(time02.slice(3,5)),
+  m1=Number(time01.slice(3,5)),
+  t2 = Number(time02.slice(0,2));
+  let newTime1 = t1 + (m1/60);
+  let newTime2 = t2 + (m2/60);
+  let x = newTime2 - newTime1;
+  x = x.toFixed(2);
+  return x;
+
+}
 function addImages() {
   for (const k in imageText) {
     const element = imageText[k];
