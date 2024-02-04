@@ -28,11 +28,20 @@ const imageText = {}//Chave:imgName valor= [img,legenda]
 const btn = getElement('btn');
 btn.addEventListener('click',fillTable);
 
+getElement('assinatura-btn').addEventListener('click',assinatura)
+
+
  
 /* ---Funções Principais--- 
  Funções acionadas pelo usuário
 */ 
-
+function assinatura() {
+//Criando quadro canvas e dando popOut
+  let canvas = document.createElement('canvas')
+  canvas.id = 'quadro'
+  popOut({value:'Assinatura'},'','',canvas)
+ // desenharCanvas()
+}
 function addMaterial() {
   // Adiciona o campo de material no formulário
   let quantidade = document.createElement('input')
@@ -95,6 +104,7 @@ function fillTable(){
     }
   let tag = (e.id.slice(1))
   if(tag == 'dataChegada'){//Adicionando a data no campo data
+    
     addToTable(value,'data')
   }
   addToTable(value,tag)
@@ -192,6 +202,29 @@ function updateImages() {
 
 /*FUNÇÔES DE Auxiliares */ 
 
+function desenharCanvas() {
+  console.log('ola')
+  let canvas = document.getElementById('quadro')
+  let ctx = canvas.getContext("2d")
+  let desenhando = false
+  
+  canvas.onmousedown = function (evt){
+    ctx.beginPath();
+    ctx.moveTo(evt.clientX,evt.clientY);
+    desenhando = true
+  }
+  canvas.onmouseup = function (){
+    desenhando = false
+  }
+  canvas.onmousemove = function (evt){
+    if (desenhando){
+      ctx.lineTo(evt.clientX,evt.clientY);
+      console.log(evt)
+      ctx.strokeStyle = "red";
+      ctx.stroke();
+    }
+  }
+}
 function subTime(time01,time02) {
   console.log(time01,time02)
   let t1 = Number(time01.slice(0,2)),
@@ -245,7 +278,6 @@ function addMaterials() {
   offToggle([document.querySelector('.materiais')],[])
  }  
 }
-
 function resetTable() {
 //Imagem e material da table, caso tenha
 while (getElement('imagens').firstChild) {

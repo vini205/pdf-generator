@@ -134,7 +134,16 @@ form{
 fieldset{
   padding: 5px;
   border: 2px black solid;
-  text-align: center;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+    label{
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
   button{
     cursor: pointer;
     text-align: center;
@@ -143,6 +152,7 @@ fieldset{
     margin-bottom: 20px;
     padding: 5px;
     transition: all .4s;
+    width: 50%;
     &:hover{
       .transition(#4677ff8f,300ms,black)
     }
@@ -218,26 +228,12 @@ fieldset{
   input{
     margin: 0;
   }
-  p{
-    cursor: pointer;
-    border:1px solid;
-    padding: 10px;
-    font-family: inherit;
-    background: white;
-    font-weight: 800;
-    transition:0.3s all;
-    &:hover{
-      background-color: @secondary;
-      box-shadow: 0px 1px 3px 0px;
-      color: white;
-    }
-  }
 }
 
 #iimages{
   display: none;
 }
-#iimages-label{
+.btn--form{
   display: block;
   cursor: pointer;
   border: solid 1px;
@@ -284,7 +280,7 @@ fieldset{
   top: 50%;
   color: white;
   left: 50%;
-  width: 70vw;
+  width: 84vw;
   background: @secondary;
   display: flex;
   transform: translate(-50%, -50%);
@@ -359,3 +355,8 @@ fieldset{
   color:@fontcolor;
 }
 
+canvas#quadro {
+  background: white;
+  width: 100%;
+  height: 400px;
+}

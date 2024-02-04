@@ -124,17 +124,21 @@
 
       <label for="imaterialNumber">Materiais usados</label>
       <div class="materialNumberHolder" id="div__material">
-        <p class="materialNumberConfirm" id="materialConfirm" >Adicionar Material</p>
+        <p class="btn--form materialNumberConfirm" id="materialConfirm" >Adicionar Material</p>
       </div>
 
       <label for="iobs">Observação</label>
       <textarea autocomplete="on" name="iobs" placeholder="Observação" class="text" id="iobs" cols="30" rows="2"></textarea>
 
-      <label for="iimages" id="iimages-label">Adicionar Imagens</label>
+      <label for="iimages" class="btn--form" id="iimages-label">Adicionar Imagens</label>
       <input type="file" name="iimages" id="iimages" accept=".png, .jpg, .jpeg, .heic" multiple>
       <div class="preview__img">
 
       </div>
+
+      <label id="assinatura-btn" class="btn--form">Assinatura do cliente</label>
+
+      <canvas id="assinatura"></canvas>
       <input type="button" id="btn" value="Adicionar" >
 
     </form>
