@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    a
+    <canvas id="quadro" style="background:beige"></canvas>
+    <script>
+          window.onload = function () {
+     let largura = 200
+     let altura =  300
+     let quadro = document.getElementById("quadro");
+     quadro.setAttribute("width",largura)
+     quadro.setAttribute("height", altura)
+     let ctx = quadro.getContext("2d")
+     let desenhando = false
+     
+     quadro.onmousedown = function (evt){
+     ctx.beginPath();
+       ctx.moveTo(evt.offsetX,evt.offsetY);
+     	 desenhando = true
+         
+     }
+     quadro.onmouseup = function (){
+       desenhando = false
+     }
+     quadro.onmousemove = function (evt){
+		if (desenhando){
+          ctx.lineTo(evt.offsetX,evt.offsetY)
+          ctx.stroke();
+      	}
+      }
+}
+    
+   
+    </script>
+</body>
+</html>

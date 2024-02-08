@@ -28,7 +28,15 @@ const imageText = {}//Chave:imgName valor= [img,legenda]
 const btn = getElement('btn');
 btn.addEventListener('click',fillTable);
 
-getElement('assinatura-btn').addEventListener('click',assinatura)
+// getElement('assinatura-btn').addEventListener('click',assinatura)
+
+//colocar data atual
+document.querySelectorAll('[type=date]').forEach((e)=>{
+  let date = new Date()
+  e.value =
+  `${date.getFullYear()}-${date.getMonth().toString().padStart(2,'0') }-${date.getDate().toString().padStart(2,'0')}`
+})
+
 
 
  
@@ -40,7 +48,7 @@ function assinatura() {
   let canvas = document.createElement('canvas')
   canvas.id = 'quadro'
   popOut({value:'Assinatura'},'','',canvas)
- // desenharCanvas()
+  desenharCanvas()
 }
 function addMaterial() {
   // Adiciona o campo de material no formulário
@@ -55,16 +63,21 @@ function addMaterial() {
   valorUniatario.placeholder = 'Valor Unitário'
   valorUniatario.title = valorUniatario.placeholder
   valorUniatario.type = 'number';
+  valorUniatario.pattern = /d{2}(,|.)\d{2}/
 
   let descricao = document.createElement('input');
   descricao.id= 'imdescricao' + materialCounter
   descricao.placeholder = 'Decrição'
   descricao.title = descricao.placeholder
 
+  
   let unidade = document.createElement('input');
   unidade.id= 'imunidade' + materialCounter
-  unidade.placeholder = 'Unidade '
+  unidade.placeholder = 'Unidade de Medida '
   unidade.title = unidade.placeholder
+  unidade.list = 'unidadesMedida'
+  //Usar o dataset com valores 
+
 
   const div = document.createElement('div');
   div.id= 'div'+ materialCounter;
@@ -72,7 +85,7 @@ function addMaterial() {
   const p = document.createElement('p');
   p.id='resetMaterialBtn'+ materialCounter;
   p.innerText='Excluir material';
-  p.classList.add('material__p');
+  p.classList.add('material__p','btn--form');
   div.classList.add('material__div');
 
   p.addEventListener('click',()=>{
@@ -81,7 +94,7 @@ function addMaterial() {
   });
 
   materialCounter++;
-  div.append(quantidade,valorUniatario,descricao,unidade,p);
+  div.append(descricao,quantidade,unidade,valorUniatario,p);
   materialHolder.append(div)
 }
 function fillTable(){
@@ -98,12 +111,21 @@ function fillTable(){
       break;
     case 'preventivaForm':
       continue;
+    case 'ichamado':
+      let date = new Date()
+      value = e.value +`A${String(date.getUTCFullYear()).substring(2)}`;
+      break;
+    case 'idataSaida':
+    case 'idataChegada':
+      value = fixDate(e.value)
+      break
     default:
       value = e.value == undefined ? '' : e.value;
       break;
     }
   let tag = (e.id.slice(1))
-  if(tag == 'dataChegada'){//Adicionando a data no campo data
+  if(tag == 'dataChegada'){
+    //Adicionando a data no campo data
     
     addToTable(value,'data')
   }
@@ -114,12 +136,14 @@ addToTable(totalTime,'tempoTotal')
 addMaterials()
 
 addImages()
-
- const printBtn = document.createElement('button')
- printBtn.classList.add('printBtn');
- printBtn.addEventListener('click',()=>print());
- printBtn.innerText='Baixar PDF ou Imprimir';
- getElement('btn-holder').append(printBtn);
+if(getElement('btnId') === null){
+  const printBtn = document.createElement('button')
+  printBtn.classList.add('printBtn');
+  printBtn.id = 'btnId';
+  printBtn.addEventListener('click',()=>print());
+  printBtn.innerText='Imprimir pdf';
+  getElement('btn-holder').append(printBtn);
+}
  
 }
 function manutencaoPreventiva(){
@@ -139,29 +163,32 @@ function manutencaoPreventiva(){
             type:'number',
             placeholder:'Digite o valor desejado ',
             classes:['input__PopOut'],
-            initial:0
+            initial:''
           }
           let btn = document.createElement('button')
           btn.textContent ='Salvar'
-          btn.addEventListener('click', ()=>{
+          btn.addEventListener('click', savetxt)
+          function savetxt() {
             button.classList.add('used')
             let v= document.querySelector("body > div.popOut > input").value
             final = button.innerHTML.replace('___', v)
-            
             addToTextarea('imanutencao',final+'\n')
+            btn.removeEventListener('click',savetxt)
+            btn.textContent = 'Salvo';
             
-          })
+          }
           popOut(txt,input,'',btn)
           // Mostra o popout
 
       })
     } else{
 
-      button.addEventListener('click',()=>{
-        addToTextarea('imanutencao',button.textContent+'\n')
-        button.classList.add('used')
-        
-      })
+      button.addEventListener('click',addtxt)
+      function addtxt() {
+          addToTextarea('imanutencao',button.textContent+'\n')
+          button.classList.add('used')
+          button.removeEventListener('click',addtxt)
+      }
     }
     }
   }
@@ -203,30 +230,31 @@ function updateImages() {
 /*FUNÇÔES DE Auxiliares */ 
 
 function desenharCanvas() {
-  console.log('ola')
   let canvas = document.getElementById('quadro')
   let ctx = canvas.getContext("2d")
   let desenhando = false
-  
-  canvas.onmousedown = function (evt){
+  // O offset representam a distância
+  // entre a borda do elemento e as bordas da tela
+  canvas.onmousedown = function (e){
+    console.log(e)
+    console.log(canvas)
     ctx.beginPath();
-    ctx.moveTo(evt.clientX,evt.clientY);
+    ctx.moveTo(e.clientX - canvas.offsetWidth, e.clientY - canvas.offsetHeight);
+    //calculando a distancia real
     desenhando = true
   }
   canvas.onmouseup = function (){
     desenhando = false
   }
-  canvas.onmousemove = function (evt){
+  canvas.onmousemove = function (e){
     if (desenhando){
-      ctx.lineTo(evt.clientX,evt.clientY);
-      console.log(evt)
-      ctx.strokeStyle = "red";
+      ctx.lineTo(e.clientX - canvas.offsetWidth, e.clientY - canvas.offsetHeight);
+      ctx.strokeStyle = "black";
       ctx.stroke();
     }
   }
 }
 function subTime(time01,time02) {
-  console.log(time01,time02)
   let t1 = Number(time01.slice(0,2)),
   m2 = Number(time02.slice(3,5)),
   m1=Number(time01.slice(3,5)),
@@ -254,26 +282,31 @@ function addImages() {
   }
 }
 function addMaterials() {
- if(materialHolder.children.length-1 >0){
+ if(materialHolder.children.length >0){
   //Adiciona os materiais na tabela
   offToggle([],[document.querySelector('.materiais')])
-  let materialsNumber = materialHolder.children.length-1;
+  let materialsNumber = materialHolder.children.length;
   let sum = 0;// Soma total
-  for (let i = 1; i < materialsNumber+1; i++) {
+  for (let i = 0; i < materialsNumber; i++) {
     // pega os valores dos campos e adiciona na tabela
     const material = materialHolder.children[i];
-    let quantidade = material.children[0].value,
-    valorUnitario = material.children[1].value,
-    descricao = material.children[2].value,
-    unidade = material.children[3].value
+    console.log(material.children)
+    let descricao = material.children[0].value,
+    quantidade = material.children[1].value,
+    unidade = material.children[2].value,
+    valorUnitario = material.children[3].value
 
     let total = valorUnitario *quantidade;
     sum+= Number(total)
+    total = total.toLocaleString("pt-BR", { style: "currency" , currency:"BRL"});
+    valorUnitario = valorUnitario.toLocaleString('pt-BR',{style:'currency', currency:"BRL"});
+
     createMaterialField(descricao,quantidade,unidade,
-      'R$ ' +valorUnitario,'R$ ' +total)
+      valorUnitario,total)
     
   }
-  getElement('total').innerHTML = 'R$ ' +sum 
+  sum = sum.toLocaleString('pt-BR',{style:"currency", currency:'BRL'})
+  getElement('total').innerHTML = sum 
  }else{
   offToggle([document.querySelector('.materiais')],[])
  }  
@@ -295,7 +328,6 @@ try {
     }  
     e.remove()
     }
-  
 } catch (error) {}
 //Para evitar mostrar erro no index 
 }
@@ -316,12 +348,12 @@ unidade='0',valorUnitario='0',sum) {
   valorUni.innerHTML = valorUnitario
   total.innerHTML = sum
   document.querySelector('#materialTotal').before(desc,quant,
-    uni, valorUni,total);
+    uni,valorUni,total);
 
 
 }
 function addToTextarea(element,info) {
-  getElement(element).innerHTML +=info;
+  getElement(element).value +=info;
   addLines(getElement(element),30)  
 }
 function popOut(text='',input='',image='',...other) {
@@ -468,12 +500,12 @@ function campoPreventiva(){
     [getElement(undefined,'preventivaTable')[0],
     getElement('preventivaForm')])
 }
-function offToggle(off,on){
+function offToggle(hide,show){
   //Toggle no campo corretiva e preventiva
-  for (const i of off) {
+  for (const i of hide) {
     i.classList.add('off')
   }
-  for (const i of on) {
+  for (const i of show) {
     i.classList.remove('off')
   }
 }
@@ -489,8 +521,18 @@ function campoCorretiva() {
 function addLines(t,height) {
   t.style.fontSize=height+'px';
   if(t.offsetHeight < t.scrollHeight){
-  let h =Number(t.style.fontSize.slice(0,2));//tamanho do Textarea
+  let h =Number(t.style.fontSize.slice(0,2));
+  //tamanho do Textarea
   let newRow = Math.floor(t.scrollHeight/h)
   t.rows = newRow;
   }
+}
+function fixDate(date) {
+  // 2024/02/08
+  date = date.replace(/-/g,'/')
+  console.log(date)
+  let year = String(date).substring(0,4)
+  let month = String(date).substring(5,7)
+  let day = String(date).substring(8,10)
+  return `${day}/${month}/${year}`;
 }
