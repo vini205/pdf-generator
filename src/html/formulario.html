@@ -90,6 +90,8 @@
           <option value="corretiva">Corretiva</option>
           <option value="preventiva">Preventiva</option>
         </select>
+      <label for="itag">Tag do equipamento</label>  
+      <input type="text" name="itag" id="itag">
 
       <fieldset id="corretivaForm">
         <label for="ideslocamento">Deslocamento Total</label>
@@ -198,9 +200,15 @@
     </div>
     
   </div>
-  <div  class="tipoAtendimento">
-    <div class="titulo tipo">  Tipo de atendimento  </div>
-    <div id="tipo"></div>
+  <div class="holderChamadoInfo">
+    <div  class="tipoAtendimento">
+      <div class="titulo tipo">  Tipo de atendimento  </div>
+      <div id="tipo"></div>
+    </div>
+    <div class="tag">
+      <div class="titulo"> Tag do equipamento </div>
+      <div id="tag"></div>
+    </div>
   </div>
   <div  class="corretivaTable">
     <div class="corretivaCampos">
@@ -240,15 +248,17 @@
       <div id="obs"></div>
     </div>
     
-    <div  class="atores">
-      <div class="titulo">
+    <div class="atores">
+      <div>
+        <div id="nametec"></div>
+        <hr>
         Técnico Responsável
       </div>
-      <div id="nametec"></div>
-      <div class="titulo">
-        Cliente Responsável (Estou ciente da Avaliação acima)
+      <div>
+        <div id="clienteName"></div>
+        <hr>
+        Cliente
       </div>
-      <div id="clienteName"></div>
 
     </div>
 </div>

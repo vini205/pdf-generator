@@ -75,7 +75,7 @@ function addMaterial() {
   unidade.id= 'imunidade' + materialCounter
   unidade.placeholder = 'Unidade de Medida '
   unidade.title = unidade.placeholder
-  unidade.list = 'unidadesMedida'
+  unidade.setAttribute('list','unidadesMedida');
   //Usar o dataset com valores 
 
 
@@ -100,6 +100,7 @@ function addMaterial() {
 function fillTable(){
   //Primeiro apaga os conteudos
   resetTable()
+  let chamadoId
  let form = getElement('form');
  for (let i = 0; i < form.elements.length-1 ; i++) {
   const e = form.elements[i];
@@ -114,6 +115,7 @@ function fillTable(){
     case 'ichamado':
       let date = new Date()
       value = e.value +`A${String(date.getUTCFullYear()).substring(2)}`;
+      chamadoId = value
       break;
     case 'idataSaida':
     case 'idataChegada':
@@ -140,7 +142,11 @@ if(getElement('btnId') === null){
   const printBtn = document.createElement('button')
   printBtn.classList.add('printBtn');
   printBtn.id = 'btnId';
-  printBtn.addEventListener('click',()=>print());
+  printBtn.addEventListener('click',()=>{
+    document.title =`RELATORIO_OS${chamadoId}`
+    print()
+    document.title = 'Gerar Relatório'
+  });
   printBtn.innerText='Imprimir pdf';
   getElement('btn-holder').append(printBtn);
 }
