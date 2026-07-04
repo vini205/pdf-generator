@@ -1,0 +1,26 @@
+div.table {
+  box-sizing: border-box;
+  padding: 20px;
+  display: block;
+}
+
+div.form {
+  display: none;
+}
+
+.imagens {
+  display: block;
+}
+
+@media print {
+  .corretivaTable, .preventivaTable, .materiais, .imagens .img__table, .obs {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .imagens {
+    break-before: always;
+    page-break-before: always;
+  }
+}
+/*# sourceMappingURL=formulario.de3a13e9.css.map */

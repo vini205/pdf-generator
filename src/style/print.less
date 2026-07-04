@@ -1,9 +1,6 @@
 div.table{
-  display: flex;
+  display: block;
   padding: 20px;
- // font-size: 17px;
-  margin: 5px;
-  height: 29cm;
   box-sizing: border-box;
 }
 div.form{
@@ -11,4 +8,23 @@ div.form{
 }
 .imagens{
   display: block;
+}
+
+/* Configurações específicas para quando o usuário for imprimir/gerar PDF */
+@media print {
+  /* Evita que a tabela de materiais ou imagens sejam cortadas ao meio */
+  .corretivaTable, 
+  .preventivaTable, 
+  .materiais, 
+  .imagens .img__table, /* Pega as imagens individuais */
+  .obs {
+    break-inside: avoid; /* Não quebra o elemento no meio */
+    page-break-inside: avoid; /* Para navegadores mais antigos */
+  }
+
+  /* Se quiser garantir que as imagens sempre comecem numa página nova */
+  .imagens {
+    break-before: always;
+    page-break-before: always;
+  }
 }

@@ -209,6 +209,7 @@ fieldset{
 .materiais div, .material__div {
   padding: 5px;
   border: 1px solid black;
+  flex-shrink: 0;
 }
 .material__p{
   display: block;
@@ -217,14 +218,12 @@ fieldset{
 .materialNumberHolder{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-y: auto;
   gap: 30px;
   align-items: center;
   margin-bottom: @marginb;
-  justify-content: center;
-  @media screen and (max-width:580px){
-    flex-direction: column;
-  }
+  justify-content: flex-start;
   input{
     margin: 0;
   }

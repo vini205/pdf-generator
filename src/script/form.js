@@ -50,6 +50,7 @@ function assinatura() {
   popOut({value:'Assinatura'},'','',canvas)
   desenharCanvas()
 }
+
 function addMaterial() {
   // Adiciona o campo de material no formulário
   let quantidade = document.createElement('input')
@@ -132,25 +133,20 @@ function fillTable(){
     addToTable(value,'data')
   }
   addToTable(value,tag)
-}
-let totalTime = subTime(getElement('ihoraChegada').value,getElement('ihoraSaida').value)
-addToTable(totalTime,'tempoTotal')
-addMaterials()
+ }
+  let totalTime = subTime(getElement('ihoraChegada').value,getElement('ihoraSaida').value)
+  addToTable(totalTime,'tempoTotal')
+  addMaterials()
 
-addImages()
-if(getElement('btnId') === null){
-  const printBtn = document.createElement('button')
-  printBtn.classList.add('printBtn');
-  printBtn.id = 'btnId';
-  printBtn.addEventListener('click',()=>{
-    document.title =`RELATORIO_OS${chamadoId}`
-    print()
-    document.title = 'Gerar Relatório'
-  });
-  printBtn.innerText='Imprimir pdf';
-  getElement('btn-holder').append(printBtn);
+  addImages() 
+  
+  imprimir(chamadoId);
+  
 }
- 
+function imprimir(chamadoId) {
+  document.title =`RELATORIO_OS${chamadoId}`;
+  print();
+  document.title = 'Gerar Relatório';
 }
 function manutencaoPreventiva(){
   //Adiciona função nos botões para adicionar no textarea
@@ -487,8 +483,10 @@ function addToTable(data, where) {
     let element = getElement(where)
     element.innerText = data
   } catch (error) {
+    console.log(error)
   }
 }
+
 function getElement(id=undefined,className=undefined,tag=undefined) {
   if(className===undefined && tag === undefined){
     return document.getElementById(id);
@@ -533,6 +531,7 @@ function addLines(t,height) {
   t.rows = newRow;
   }
 }
+
 function fixDate(date) {
   // 2024/02/08
   date = date.replace(/-/g,'/')

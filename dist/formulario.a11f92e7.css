@@ -1,0 +1,385 @@
+@keyframes ann {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  background-color: #fff;
+  font-family: Open Sans, Arial, Helvetica, sans-serif;
+}
+
+body .form {
+  background-color: #fff;
+  border-radius: 5px;
+  width: 90%;
+  margin: 10px auto;
+  padding: 5px;
+  font-family: Open Sans, Arial, Helvetica, sans-serif;
+}
+
+body .form .logo__form {
+  max-width: 100%;
+  height: 160px;
+  margin: auto;
+  display: block;
+}
+
+body .form h1 {
+  text-align: center;
+  font-size: 2em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  padding: 5px;
+  font-size: 2em;
+}
+
+form input, form select, form textarea {
+  resize: none;
+  color: #000;
+  margin-bottom: 20px;
+  display: block;
+}
+
+form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  font-family: Open Sans, Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+
+form input {
+  box-sizing: border-box;
+  vertical-align: baseline;
+  border: none;
+  border-bottom: 1px solid;
+  outline: none;
+  width: 100%;
+  height: 50px;
+  padding: 3px;
+  font-family: Open Sans, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  transition: border .2s cubic-bezier(.25, .46, .45, .94);
+}
+
+form input:focus {
+  background-color: #0000000f;
+  border-bottom: 1px solid #00f;
+}
+
+form input::placeholder {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+form input[type="date"] {
+  background-color: #f0e91d;
+  border: 1px solid #000;
+  height: 30px;
+}
+
+form input[type="button"], form input[type="reset"] {
+  background-color: #fff;
+  border: 1px solid;
+  border-radius: 2px;
+  transition: all .5s;
+}
+
+form input[type="button"]:hover, form input[type="reset"]:hover {
+  color: #fff;
+  background-color: #535353;
+  transition: all .1s;
+}
+
+form input[type="button"]:focus-visible, form input[type="reset"]:focus-visible {
+  color: #fff;
+  background-color: #000;
+}
+
+form p {
+  display: inline;
+}
+
+form input[type="radio"] {
+  width: 50px;
+  height: 20px;
+  margin-bottom: 0;
+  display: inline;
+}
+
+form #itipoOutro {
+  width: 100%;
+  margin-bottom: 0;
+  display: inline;
+}
+
+form .tipo__div {
+  align-items: center;
+  gap: 20px;
+  display: flex;
+}
+
+form select {
+  width: 100%;
+  height: 30px;
+}
+
+fieldset {
+  text-align: left;
+  border: 2px solid #000;
+  flex-flow: column;
+  align-items: center;
+  padding: 5px;
+  display: flex;
+}
+
+fieldset label {
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+
+fieldset button {
+  cursor: pointer;
+  text-align: center;
+  background-color: #f0e91d;
+  border: 1px solid;
+  width: 50%;
+  margin-bottom: 20px;
+  padding: 5px;
+  transition: all .4s;
+}
+
+fieldset button:hover {
+  color: #000;
+  background-color: #4677ff8f;
+  transition: all .3s;
+}
+
+.tipo__form {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+#btn-holder {
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+}
+
+@media screen and (width <= 580px) {
+  #btn-holder {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+#btn {
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid;
+  height: 90px;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 1.2em;
+  font-weight: 800;
+  transition: all .3s;
+}
+
+#btn:hover {
+  color: #fff;
+  background-color: #00c;
+  box-shadow: 0 1px 3px;
+}
+
+#btn:focus-visible {
+  color: #fff;
+  background-color: #000;
+}
+
+.printBtn, .resetBtn {
+  vertical-align: middle;
+  background: #fff;
+  height: 49px;
+  padding: 10px;
+  font-size: 1.5em;
+  transition: all .5s;
+}
+
+.printBtn:hover, .resetBtn:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+.materiais div, .material__div {
+  border: 1px solid #000;
+  flex-shrink: 0;
+  padding: 5px;
+}
+
+.material__p {
+  margin-top: 10px;
+  display: block;
+}
+
+.materialNumberHolder {
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  overflow-y: auto;
+}
+
+.materialNumberHolder input {
+  margin: 0;
+}
+
+#iimages {
+  display: none;
+}
+
+.btn--form {
+  cursor: pointer;
+  text-align: center;
+  background-color: #f0e91d;
+  border: 1px solid;
+  margin-bottom: 20px;
+  padding: 5px;
+  transition: all .4s;
+  display: block;
+}
+
+.btn--form:hover {
+  color: #000;
+  background-color: #0000008f;
+  transition: all .3s;
+}
+
+.preview__img {
+  flex-direction: row;
+  margin-bottom: 20px;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.preview__img .image__holder {
+  margin: 5px 13px;
+}
+
+.preview__img .image__holder .img {
+  width: 200px;
+  height: 200px;
+}
+
+.preview__img--visible {
+  border: 1px solid;
+}
+
+.preview__img--visible::-webkit-scrollbar {
+  width: 5px;
+}
+
+.preview__img--visible::-webkit-scrollbar-track-piece {
+  background: #00000067;
+}
+
+.preview__img--visible::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 5px;
+}
+
+.popOut {
+  color: #fff;
+  background: #0003e0;
+  border: solid #000;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 84vw;
+  padding: 10px;
+  transition: all 1s;
+  animation: 1s ann;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px 6px #959595;
+}
+
+.popOut p {
+  text-align: center;
+  text-overflow: clip;
+  width: 100%;
+  margin: 30px auto;
+  font-size: 1.5em;
+  font-weight: bolder;
+  overflow: hidden;
+}
+
+.popOut img {
+  border: 1px solid;
+  width: 30%;
+  height: 50%;
+  margin: 10px auto;
+  display: block;
+}
+
+.popOut input {
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  border-bottom: 3px solid;
+  outline: none;
+  width: 43%;
+  margin: 30px auto;
+  padding: 3px;
+  font-size: 1em;
+}
+
+.popOut button {
+  background: #fff;
+  border: 1px solid;
+  width: 30%;
+  margin: 5px auto;
+  padding: 5px;
+  transition: all .4s;
+  display: block;
+}
+
+.popOut .saveBtn, .popOut .deleteImgBtn {
+  width: 30%;
+  margin-top: 10px;
+  display: block;
+}
+
+.popOut button:hover {
+  color: #fff;
+  background-color: #00b401;
+  transition: all .3s;
+}
+
+.used {
+  opacity: .8;
+  background-color: gray;
+}
+
+canvas#quadro {
+  background: #fff;
+  width: 100%;
+  height: 400px;
+}
+/*# sourceMappingURL=formulario.a11f92e7.css.map */
