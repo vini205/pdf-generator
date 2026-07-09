@@ -13,7 +13,7 @@ div.form {
 }
 
 @media print {
-  .corretivaTable, .preventivaTable, .materiais, .imagens .img__table, .obs {
+  .corretivaTable, .preventivaTable, .materiais, .atores, .imagens .img__table, .obs {
     break-inside: avoid;
     page-break-inside: avoid;
   }

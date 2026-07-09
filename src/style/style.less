@@ -3,7 +3,8 @@
 @cor-th-title:rgb(196, 196, 196);
 @primary:#00B401;
 @secondary:#0003E0;
-@terciary:#F0E91D;
+@terciary:#4173f2 ;
+@usedButton:lightgray;
 @font-size:2em;
 @font-size-Title:2em;
 @font-family: 'Open Sans',Arial, Helvetica, sans-serif;
@@ -57,6 +58,7 @@ form{
     margin-bottom: @marginb;
     resize: none;
     color: black;
+    
   }
   textarea{
     width: 100%;
@@ -91,6 +93,7 @@ form{
     background-color: @terciary;
     height: 30px;
     border: 1px solid black;
+    color: white;
   }
   input[type='button'],input[type='reset']{
     border: 1px solid;
@@ -241,8 +244,9 @@ fieldset{
   padding: 5px;
   background-color: @terciary;
   transition: 400ms;
+  color: white;
   &:hover{
-    .transition(#0000008f,300ms,black)
+    .transition(@usedButton,300ms,black)
   }
 }
 .preview__img{
@@ -345,7 +349,7 @@ fieldset{
   }
 }
 .used{
-  background-color: gray;
+  background-color: @usedButton;
   opacity: 0.8;
 }
 .transition(@color,@time,@fontcolor:white){
