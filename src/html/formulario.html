@@ -144,9 +144,21 @@
       <div class="preview__img">
 
       </div>
-<!-- 
-      <label id="assinatura-btn" class="btn--form">Assinatura do cliente</label>
- -->
+
+      
+      <div class="assinatura">
+        <label for="iAssCli" id="iAssCli" class="btn--form">Assinatura do cliente</label>
+        <canvas name="iAssCli" hidden id="assinaturaCliente"></canvas>
+        
+      </div>
+      <div class="assinatura">
+        <label for="iAssRes" id="iAssRes" class="btn--form"  >Assinatura Responsável</label>
+        <canvas name="iAssRes" id="assinaturaResponsavel" hidden ></canvas>
+        
+      </div>
+
+
+
       <input type="button" id="btn" value="Imprimir" >
 
     </form>
@@ -259,14 +271,17 @@
         <hr>
         Cliente
       </div>
-
     </div>
+
+    
+
 </div>
 <div  class="imagens off">
   <div class="titulo">Relatório Fotográfico</div>
   <div id="imagens"></div>
 </div>
 <script src="../script/index.js"></script>
-  <script src="../script/form.js"></script>
+<script src="../script/form.js"></script>
+<script src="../script/assinatura.js"></script>
 </body>
 </html>
