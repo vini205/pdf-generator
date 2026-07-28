@@ -147,12 +147,12 @@
 
       
       <div class="assinatura">
-        <label for="iAssCli" id="iAssCli" class="btn--form">Assinatura do cliente</label>
+        <label for="iAssCli" id="iAssCli" class="btn--form">Assinatura do Responsável</label>
         <canvas name="iAssCli" hidden id="assinaturaCliente"></canvas>
         
       </div>
       <div class="assinatura">
-        <label for="iAssRes" id="iAssRes" class="btn--form"  >Assinatura Responsável</label>
+        <label for="iAssRes" id="iAssRes" class="btn--form"  >Assinatura do Técnico </label>
         <canvas name="iAssRes" id="assinaturaResponsavel" hidden ></canvas>
         
       </div>
@@ -261,16 +261,31 @@
     </div>
     
     <div class="atores">
-      <div>
-        <div id="nametec"></div>
-        <hr>
-        Técnico Responsável
+      <div class="gridVisto">
+        <div>
+          <div id="nametec"></div>
+          <hr>
+          <p>Técnico Responsável </p>
+        </div>
+        <div>
+          <div id="container--assResponsavel"></div>
+          
+          <p>Assinatura</p>
+        </div>
       </div>
-      <div>
-        <div id="clienteName"></div>
-        <hr>
-        Cliente
-      </div>
+
+      <div class="gridVisto">
+        <div>
+          <div id="clienteName"></div>
+          <hr>
+          <P>Cliente Responsável</P>
+        </div>
+        <div>
+          <div id="container--assCliente"></div>
+            
+            <p>Assinatura</p>
+          </div>
+        </div> 
     </div>
 
     

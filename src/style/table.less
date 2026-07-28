@@ -35,6 +35,15 @@
         padding: 4px;
         text-align: left;
     }
+
+    .assinatura__table{
+        width: 90px;
+        height: 60px;
+        transform: scale(2);
+
+    }
+
+
 }
 div.head_info{
     grid-template-columns: repeat(3,1fr);
@@ -148,6 +157,24 @@ div.atores{
     hr{
         width: 50%;
         margin: auto;
+    }
+
+    .gridVisto{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        border: solid 1px;
+        margin: 0 1px 0 0;
+        & > div{
+            height: 120px;
+            width: 100%;
+            div[id]{
+                font-size: 18px;
+            }
+        }
+        p{
+            font-size: 15px;
+        }
     }
 }
 .imagens{

@@ -138,8 +138,8 @@ function fillTable(){
   addToTable(totalTime,'tempoTotal')
   addMaterials()
 
-  addImages() 
-  
+  addImages() ;
+  addCanvas();  // adiciona as assinaturas
   imprimir(chamadoId);
   
 }
@@ -358,6 +358,47 @@ function addToTextarea(element,info) {
   getElement(element).value +=info;
   addLines(getElement(element),30)  
 }
+
+function addCanvas() {
+  // copia o canvas do formulário para o table
+
+  const assinaturaCliente = document.getElementById('assinaturaCliente');
+  const assinaturaResponsavel = document.getElementById('assinaturaResponsavel');
+
+  const containerTec = document.getElementById('container--assResponsavel');
+  const containerCli = document.getElementById('container--assCliente');
+
+  if (!assinaturaCliente || !assinaturaResponsavel || !containerTec || !containerCli) {
+      console.error("Erro: Elementos do DOM não encontrados.");
+      return;
+  }
+
+
+  const imgTecnico = document.createElement('img');
+  const imgCliente = document.createElement('img');
+
+  imgTecnico.classList.add('assinatura__table');
+  imgCliente.classList.add('assinatura__table');
+  
+  imgTecnico.src = assinaturaResponsavel.toDataURL('image/png');
+  imgCliente.src = assinaturaCliente.toDataURL('image/png');
+
+
+
+  const canvasTecnico = document.createElement('canvas'); 
+  const canvasCliente  = document.createElement('canvas'); 
+
+  containerTec.innerHTML = '';
+  containerCli.innerHTML = '';
+
+  // 4. Inserção das imagens no DOM
+  containerTec.appendChild(imgTecnico);
+  containerCli.appendChild(imgCliente);
+
+
+
+}
+
 function popOut(text='',input='',image='',...other) {
   /*
     Recebe:
@@ -450,7 +491,7 @@ function popOutImg(e) {
   const image = e.cloneNode();
   
   saveBtn.classList.add('saveBtn');
-  saveBtn.textContent = 'salvar';
+  saveBtn.textContent = 'Salvar';
   sair.textContent ='close';
   deleteBtn.textContent = 'Deletar Imagem'
   input.placeholder = 'Legenda da Imagem';

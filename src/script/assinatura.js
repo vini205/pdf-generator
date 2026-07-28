@@ -4,6 +4,8 @@ function setupCanvas(container) {
     const ctx = canvas.getContext('2d');
     const toggleBtn = container.querySelector('label');
     
+    
+
     const buttonHolder = document.createElement('div');
     buttonHolder.classList.add('assinatura__btn--holder');
 
@@ -33,6 +35,9 @@ function setupCanvas(container) {
         ctx.lineCap = 'round';
         ctx.strokeStyle = '#000000';
         ctx.lineWidth = 3;
+
+        drawGuideLine()
+
     }
 
 
@@ -46,7 +51,7 @@ function setupCanvas(container) {
                 salvaCanva = ctx.getImageData(0,0,canvas.width,canvas.height);
             }
 
-            // As duas linhas abaixo apagam o canva
+            // As duas linhas abaixo arrumam o canva mas apagam o conteudo
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
 
@@ -92,14 +97,20 @@ function setupCanvas(container) {
                 setTimeout(()=>{
                     resizeCanvas();
 
-                },1500)
+                },1000)
             }
-        }              
+        } else{
+            resizeCanvas();
+            
+        }
 
     });
+
+
     clearBtn.addEventListener('click', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+        drawGuideLine();
+        assinaturas
     });
     sairBtn.addEventListener('click', async () => {
     try {
@@ -140,6 +151,15 @@ function setupCanvas(container) {
     }
 
     // --- Funções de desenho ---
+
+    function drawGuideLine() {
+        // Colocando uma linha central para basear a assinatira
+        ctx.beginPath();
+        ctx.beginPath();
+        ctx.moveTo(canvas.width * (1/6) , canvas.height * (2/3));
+        ctx.lineTo(canvas.width * (5/6) , canvas.height * (2/3));
+        ctx.stroke();
+    }
 
     function startDrawing(e) {
         const pos = getPosition(e);

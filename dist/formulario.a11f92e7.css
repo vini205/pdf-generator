@@ -31,6 +31,7 @@ body .form .logo__form {
 
 body .form h1 {
   text-align: center;
+  margin: 60px 0;
   font-size: 2em;
 }
 
@@ -305,14 +306,14 @@ fieldset button:hover {
 }
 
 .popOut {
-  color: #fff;
-  background: #0003e0;
-  border: solid #000;
+  color: #000;
+  background: #fff;
+  border: solid #0003e0;
   flex-direction: column;
   align-items: flex-start;
   width: 84vw;
   padding: 10px;
-  transition: all 1s;
+  transition: all .5s;
   animation: 1s ann;
   display: flex;
   position: fixed;
@@ -343,6 +344,7 @@ fieldset button:hover {
 .popOut input {
   box-sizing: border-box;
   text-align: center;
+  background-color: #4677ff22;
   border: none;
   border-bottom: 3px solid;
   outline: none;
@@ -379,7 +381,7 @@ fieldset button:hover {
   background-color: #d3d3d3;
 }
 
-canvas {
+form canvas {
   z-index: 4;
   background: #fff;
   border: 2px solid #000;
